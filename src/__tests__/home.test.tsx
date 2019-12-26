@@ -18,7 +18,7 @@ describe("Home page", () => {
     wrapper
       .find(".header-filtr form #location")
       .simulate("change", { target: { value: "Ibadan" } });
-    expect(wrapper.find("#location").text()).toBe("Iadan");
+    expect(wrapper.find("#location").text()).toBe("Ibadan");
   });
 
   // it("displays error for invalid user name input", () => {
