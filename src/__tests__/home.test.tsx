@@ -9,10 +9,17 @@ describe("Home page", () => {
   it("Should render home page", () => {
     shallow(<Home />);
   });
-  // it("displays initial states", () => {
-  //   const wrapper = mount(<Home name={"ini"} />);
-  //   expect(wrapper.find("p.user").text()).toEqual("ini");
-  // });
+  it("Should display initial states", () => {
+    const wrapper = mount(<Home />);
+    expect(wrapper.find(".header-filtr form #location").text()).toEqual("");
+  });
+  it("Should set location state", () => {
+    const wrapper = mount(<Home />);
+    wrapper
+      .find(".header-filtr form #location")
+      .simulate("change", { target: { value: "Ibadan" } });
+    expect(wrapper.find("#location").text()).toBe("Iadan");
+  });
 
   // it("displays error for invalid user name input", () => {
   //   const wrapper = mount(<Home name={""} />);

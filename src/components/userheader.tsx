@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UserHeader: React.FC<any> = () => {
   return (
     <header id="usr-header">
       <nav>
         <div className="hdr-left">
-          <div id="logo"></div>
+          <Link to="" id="logo"></Link>
         </div>
         <ul id="main-nav">
           <li>Be a store owner</li>
@@ -13,7 +14,7 @@ const UserHeader: React.FC<any> = () => {
           <li>Messages</li>
           <li>
             <i className="fa fa-">h</i>
-            <ul id = "usr-account"></ul>
+            <ul id="usr-account"></ul>
           </li>
         </ul>
       </nav>
