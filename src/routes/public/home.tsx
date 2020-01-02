@@ -24,6 +24,7 @@ const Home: React.FC<{}> = () => {
                     id="location"
                     onChange={e => setLocation(e.target.value)}
                     type="text"
+                    value = {location}
                   />
                   <div>
                     <ul>
