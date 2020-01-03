@@ -1,0 +1,66 @@
+.grid {
+    display: grid;
+    grid-gap: 0.8rem;
+
+    &.grid-3 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    &.grid-1 {
+        grid-template-columns: 1fr ;
+    }
+
+    >a {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+
+        img,
+        figure {
+            width: inherit;
+            position: relative;
+        }
+
+        img {
+            min-height: 100%;
+            max-height: 150%;
+            width: auto;
+            position: absolute;
+            min-width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        figure {
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 100%;
+
+            &.horizontal {
+                padding-bottom: 50%;
+            }
+            &.vertical {
+                padding-bottom: 130%;
+            }
+
+            .card-overlay {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                bottom: 0;
+                background: linear-gradient(rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, .5));
+            }
+
+            figcaption {
+                position: absolute;
+                bottom: 25px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #fff;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}

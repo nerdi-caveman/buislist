@@ -1,4 +1,85 @@
-.btn{
-    border:none;
-    background: #f1f1f1;
-}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    border-radius: 7px;
+  
+    p {
+      margin: 0;
+      color: #fff;
+      z-index: 1;
+      position: relative;
+    }
+  
+    &:hover {
+      .rpple {
+        &::after {
+          width: 200px;
+          height: 200px;
+          transition: .35s ease;
+        }
+  
+      }
+    }
+  
+    &:focus {
+      .rpple {
+        &::before {
+          width: 200px;
+          height: 200px;
+          transition: .5s ease;
+        }
+  
+      }
+    }
+  
+    .rpple {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+  
+      &::after {
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        width: 0px;
+        height: 0px;
+        background: lighten($peach, 5);
+        transform: translate(-50%, -50%);
+        border-radius: 50px;
+        z-index: 0;
+      }
+  
+      &::before {
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        width: 0px;
+        height: 0px;
+        background: darken($peach, 5);
+        transform: translate(-50%, -50%);
+        border-radius: 50px;
+        z-index: 1;
+      }
+    }
+  
+    &.btn-primary {
+      background: $peach;
+      box-shadow: 2px 0 4px rgba($peach, .6);
+      border: 1px solid darken($peach, .2)
+    }
+  
+    &.btn-lg {
+      padding: 14px 26px;
+      font-size: 1rem;
+      color: white;
+    }
+  }
