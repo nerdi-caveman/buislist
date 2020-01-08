@@ -3,6 +3,7 @@ import Head from "../../components/head";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
+import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
 // import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
 // import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
 // import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
@@ -13,11 +14,20 @@ import { Link } from "react-router-dom";
 import Img from "react-image";
 import Slider from "../../components/slider";
 import ReactCarousel from "../../components/react-carousel";
+import Icon from "@mdi/react";
+import { mdiChevronRight } from "@mdi/js";
 
 const firstSlider = [
   { src: Storebanner, caption: "Stores" },
   { src: tech, caption: "Products" },
   { src: photography, caption: "People" }
+];
+const carouselImages = [
+  { src: Storebanner },
+  { src: tech },
+  { src: ab },
+  { src: carouselimg1 },
+  { src: photography }
 ];
 
 const Home: React.FC<{}> = props => {
@@ -43,9 +53,23 @@ const Home: React.FC<{}> = props => {
     setItems(fetchData);
   };
 
-  const SliderLabel:React.FC = () => {
-    return <p>Hello</p>
-  }
+  const SliderLabel: React.FC = () => {
+    return (
+      <div className="carousel-label">
+        <p className="label">INTRODUCING</p>
+        <h2>Uber Stores</h2>
+        <p className="desc">Grow your business, manage orders, and more</p>
+
+        <Link to="">
+          <button className="btn btn-md">
+            <span className="rpple"></span>
+            <p>Own a store</p>
+            <Icon path={mdiChevronRight} size={0.8} color="#4b4b4b" />
+          </button>
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <div className="home">
@@ -107,9 +131,19 @@ const Home: React.FC<{}> = props => {
       </section>
 
       <section id="learn-more-stores" className="mini-section ">
+        <ReactCarousel
+          animation="fadein"
+          imgSrc={carouselImages}
+          interval={6500}
+          label={<SliderLabel />}
+        />
+      </section>
+
+
+      <section id="stores" className="mini-section ">
         <div className="store-banner">
           <div className="grid grid-1">
-            <Link to="" className="each-img-card">
+            <Link to="/" className="each-img-card">
               <figure className="horizontal">
                 <img src={ab} alt="stores" />
                 <span className="card-overlay"></span>
@@ -120,7 +154,7 @@ const Home: React.FC<{}> = props => {
         </div>
       </section>
 
-      <ReactCarousel animation="fadein" imgSrc={firstSlider} interval = {6000} label = {<SliderLabel/>} />
+
     </div>
   );
 };
