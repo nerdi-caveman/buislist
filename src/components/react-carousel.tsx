@@ -44,39 +44,41 @@ const ReactCarousel: React.FC<any> = ({
     return false;
   };
 
-  const startCarousel = (slides: any) => {
-    let count: number = 0;
-    let slidesLength: number = slides.length;
-    for (let i: number = 1; i < slidesLength; i++) {
-      slides[i].style.zIndex = "0";
-      slides[i].style.opacity = "0";
-      slides[i].style.transform = "scale(1)";
-    }
-
-    setInterval(() => {
-      if (count < slidesLength - 1) {
-        count++;
-      } else {
-        count = 0;
-      }
-
-      for (let i: number = 0; i < slidesLength; i++) {
-        if (count === i) {
-          animations.fadeIn(slides[count]);
-        } else {
-          animations.fadeOut(slides[i]);
-        }
-      }
-    }, interval);
-  };
-
   const getAllSlides = (): NodeList => {
     return document.querySelectorAll("#carousel .slide");
   };
 
   useEffect(() => {
     if (isAnimationSupported()) {
-      startCarousel(getAllSlides());
+      const slides: any = getAllSlides();
+      let count: number = 0;
+      let slidesLength: number = slides.length;
+      for (let i: number = 1; i < slidesLength; i++) {
+        slides[i].style.zIndex = "0";
+        slides[i].style.opacity = "0";
+        slides[i].style.transform = "scale(1)";
+      }
+      slides[0].style.zIndex = "1";
+      slides[0].style.opacity = "1";
+      slides[0].style.transform = "scale(1.2)";
+
+      const startInterval = setInterval(() => {
+        if (count < slidesLength - 1) {
+          count++;
+        } else {
+          count = 0;
+        }
+
+        for (let i: number = 0; i < slidesLength; i++) {
+          if (count === i) {
+            animations.fadeIn(slides[count]);
+          } else {
+            animations.fadeOut(slides[i]);
+          }
+        }
+      }, interval);
+
+      return () => clearInterval(startInterval);
     }
   });
 

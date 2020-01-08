@@ -142,7 +142,7 @@ const Home: React.FC<{}> = props => {
 
       <section id="stores" className="mini-section ">
         <div className="store-banner">
-          <div className="grid grid-1">
+          <div className="grid grid-6">
             <Link to="/" className="each-img-card">
               <figure className="horizontal">
                 <img src={ab} alt="stores" />
