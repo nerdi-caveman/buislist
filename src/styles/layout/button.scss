@@ -1,85 +1,117 @@
-
 .btn {
-    border: none;
-    cursor: pointer;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  border-radius: 7px;
+  transition: transform .35s;
+
+  &:after {
+    transition: all .25s;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    content: "";
+    border-radius: 9px;
+    transform: translate(-50%, -50%);
+    border: 1px solid transparent;
+  }
+
+  p {
+    margin: 0;
+    color: #fff;
+    z-index: 1;
     position: relative;
-    outline: none;
-    border-radius: 7px;
-  
-    p {
-      margin: 0;
-      color: #fff;
-      z-index: 1;
-      position: relative;
-    }
-  
-    &:hover {
-      .rpple {
-        &::after {
-          width: 200px;
-          height: 200px;
-          transition: .35s ease;
-        }
-  
-      }
-    }
-  
-    &:focus {
-      .rpple {
-        &::before {
-          width: 200px;
-          height: 200px;
-          transition: .5s ease;
-        }
-  
-      }
-    }
-  
+  }
+
+  &:focus {
     .rpple {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-  
       &::after {
-        position: absolute;
-        content: "";
-        left: 50%;
-        top: 50%;
-        width: 0px;
-        height: 0px;
-        background: lighten($peach, 5);
-        transform: translate(-50%, -50%);
-        border-radius: 50px;
-        z-index: 0;
+        width: 200px;
+        height: 200px;
+        transition: all .75s cubic-bezier(0.19, 1, 0.22, 1);
       }
-  
-      &::before {
-        position: absolute;
-        content: "";
-        left: 50%;
-        top: 50%;
-        width: 0px;
-        height: 0px;
-        background: darken($peach, 5);
-        transform: translate(-50%, -50%);
-        border-radius: 50px;
-        z-index: 1;
-      }
-    }
-  
-    &.btn-primary {
-      background: $peach;
-      box-shadow: 2px 0 4px rgba($peach, .6);
-      border: 1px solid darken($peach, .2)
-    }
-  
-    &.btn-lg {
-      padding: 14px 26px;
-      font-size: 1rem;
-      color: white;
+
     }
   }
+
+  &:active{
+    transform: scale(0.95);
+    transform-origin: center center;
+  }
+
+  &:focus {
+    .rpple {
+      &::before {
+        width: 200px;
+        height: 200px;
+        transition: 1.15s all .1s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+    }
+  }
+
+  .rpple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 50%;
+      top: 50%;
+      width: 0px;
+      height: 0px;
+      background: lighten($peach, 5);
+      transform: translate(-50%, -50%);
+      border-radius: 50px;
+      z-index: 0;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 50%;
+      top: 50%;
+      width: 0px;
+      height: 0px;
+      background: darken($peach, 5);
+      transform: translate(-50%, -50%);
+      border-radius: 50px;
+      z-index: 1;
+    }
+  }
+
+  &.btn-primary {
+    background: $peach;
+    // box-shadow: 2px 0 4px rgba($peach, .6);
+    border: 1px solid darken($peach, .2);
+
+    &:hover {
+      &:after {
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        padding: 3.8px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        will-change: transform;
+        border: 1.25px solid #333;
+      }
+    }
+  }
+
+  &.btn-lg {
+    padding: 12px 26px;
+    font-size: 1rem;
+    color: white;
+  }
+}

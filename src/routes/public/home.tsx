@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import Head from "../../components/head";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
-import Storebanner from "../../assets/san-diego-apparel-america-s-finest-city-176837.jpg";
-import tech from "../../assets/araltasher___BtjFtkShNjx___.jpg";
-import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
-import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
-import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
-import photography from "../../assets/back1.jpg";
-import loader from "../../assets/d938fa8c-09d3-4093-8145-7bb890cf8a76.gif";
-import ReactDataList from "react-datalist";
+import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
+import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
+// import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
+// import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
+// import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
+import photography from "../../assets/woman-making-clay-pot-2166456.jpg";
+import ab from "../../assets/four-assorted-perfume-glass-bottles-965989.jpg";
+import ReactDataList from "../../components/react-datalist";
 import { Link } from "react-router-dom";
 import Img from "react-image";
+import Slider from "../../components/slider";
+import ReactCarousel from "../../components/react-carousel";
 
-const Loader: React.FC<any> = () => {
-  return (
-    <>
-      <img src={loader} alt="loading" />
-    </>
-  );
-};
+const firstSlider = [
+  { src: Storebanner, caption: "Stores" },
+  { src: tech, caption: "Products" },
+  { src: photography, caption: "People" }
+];
 
 const Home: React.FC<{}> = props => {
   const data = ["Ibadan, Nigeria", "Lagos, Nigeria", "Berlin, Germany"];
-  const optionsMenu = ["All", "Stores", "Products", "Services"];
+  const optionsMenu = ["All", "Stores", "Products", "People"];
   const [menu, setMenu] = useState(optionsMenu[0]);
   const itemData = [
     "Perfume oils",
     "Software Engineer",
+    "Dessy Naija",
     "Fashion designer",
     "Photographer"
   ];
@@ -40,8 +41,11 @@ const Home: React.FC<{}> = props => {
       item.toLowerCase().match(regex) ? true : false
     );
     setItems(fetchData);
-    console.log(fetchData);
   };
+
+  const SliderLabel:React.FC = () => {
+    return <p>Hello</p>
+  }
 
   return (
     <div className="home">
@@ -56,10 +60,10 @@ const Home: React.FC<{}> = props => {
               <h1>Find local stores, services and talents around you.</h1>
               <form>
                 <div className="form-group" id="fltr-item">
-                  <label htmlFor="item">FIND</label>
+                  <label htmlFor="item">LOOKING FOR</label>
                   <ReactDataList
                     list="item"
-                    placeholder="What you are looking for"
+                    placeholder="Everything"
                     forcePoly={true}
                     options={items}
                     menuTitle="Explore"
@@ -97,103 +101,26 @@ const Home: React.FC<{}> = props => {
       </section>
       <section id="explore">
         <div className="page-container">
-          <h2>Discover buislist</h2>
-          <div className="grid grid-3">
+          <h2>Discover </h2>
+        </div>
+        <Slider id="slider1" images={firstSlider} margin={25} />
+      </section>
+
+      <section id="learn-more-stores" className="mini-section ">
+        <div className="store-banner">
+          <div className="grid grid-1">
             <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={media} alt="stores" />
+              <figure className="horizontal">
+                <img src={ab} alt="stores" />
                 <span className="card-overlay"></span>
                 <figcaption>Media</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Productbanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Fashion</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Accessoriesbanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Accessories</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={photography} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Photgraphy</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={tech} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Tech</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Storebanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Beauty</figcaption>
               </figure>
             </Link>
           </div>
         </div>
       </section>
 
-      <section id="stores" className="mini-section ">
-        <div className="page-container">
-          <h2>Discover buislist</h2>
-          <div className="grid grid-3">
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={media} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Media</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Productbanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Fashion</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Accessoriesbanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Accessories</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={photography} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Photgraphy</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={tech} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Tech</figcaption>
-              </figure>
-            </Link>
-            <Link to="" className="each-img-card">
-              <figure className="vertical">
-                <Img src={Storebanner} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Beauty</figcaption>
-              </figure>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ReactCarousel animation="fadein" imgSrc={firstSlider} interval = {6000} label = {<SliderLabel/>} />
     </div>
   );
 };

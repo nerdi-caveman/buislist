@@ -69,9 +69,12 @@
                 transform: translate(-50%, -50%);
                 width: 100%;
                 height: 100%;
-                padding: 3px;
+                padding:3px;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                -moz-backface-visibility: hidden;
                 will-change: transform;
-                border: 2px solid darken($dimgray, 20);
+                border: 1.25px solid #333;
             }
         }
 

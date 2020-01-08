@@ -1,0 +1,104 @@
+.slider {
+    display: flex;
+    padding: 10px 0;
+    transition: transform .25s;
+
+    &.slider-4 {
+
+        >a,  .each-img-card > a {
+            width: calc(25vw - 56px);
+            text-decoration: none;
+        }
+
+    }
+
+    >a, .each-img-card{
+        height: -moz-fit-content;
+        height: fit-content;
+        margin: 0 15px 0 0;
+        position: relative;
+        border-radius: 7px;
+
+        img,
+        .img-slide, figure {
+            width: inherit;
+            position: relative;
+        }
+
+        img {
+            min-height: 100%;
+            max-height: 150%;
+            width: auto;
+            position: absolute;
+            min-width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+
+
+        .img-slide {
+            border-radius: 7px;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 100%;
+
+            &.horizontal {
+                padding-bottom: 40%;
+            }
+
+            &.horizontal-md {
+                padding-bottom: 60%;
+            }
+
+            &.vertical {
+                padding-bottom: 130%;
+            }
+
+            .card-overlay {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                bottom: 0;
+                background: linear-gradient(rgba(0, 0, 0, .15) 30%, rgba(0, 0, 0, .4));
+            }
+
+        }
+
+        figcaption {
+            position: absolute;
+            left: 22px;
+            bottom: 16px;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+    }
+
+}
+.slider-btn{
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    background: #fff;
+    top:50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    padding: 3px;
+    cursor: pointer;
+
+    &.prev{
+        left: -7px;
+        display: none;
+    }
+    &.next{
+        right: -7px;
+    }
+}
