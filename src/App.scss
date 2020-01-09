@@ -41,10 +41,25 @@ html {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+
+  &.space-between {
+    justify-content: space-between;
+  }
+}
+
 @import "./styles/components/datalist.scss";
 @import "./styles/components/react-carousel.scss";
 @import "./styles/layout/button.scss";
 @import "./styles/layout/grid.scss";
+@import "./styles/layout/badge.scss";
+@import "./styles/components/stores-grid.scss";
 
 .default {
   @import "./styles/theme/default.scss";
@@ -91,8 +106,7 @@ header {
       }
     }
 
-    .hdr-left {
-    }
+    .hdr-left {}
   }
 }
 
@@ -202,12 +216,33 @@ form {
 #explore,
 .mini-section {
   padding: 45px 0;
-  padding-bottom: 15px;
+  padding-bottom: 0;
 
   h2 {
     margin: 20px 0;
     font-size: 1.7em;
   }
+
+  .section-head {
+    margin: 20px 0;
+
+    h2 {
+      margin: 0;
+    }
+
+    a {
+      vertical-align: middle;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: $peach;
+
+      svg {
+        vertical-align: text-top;
+      }
+    }
+
+  }
+
 }
 
 #learn-more-stores .store-banner {
@@ -225,6 +260,7 @@ form {
   .slider {
     white-space: nowrap;
     display: block;
+
     figcaption {
       padding: 15px 18px;
       font-weight: 500;
@@ -233,7 +269,7 @@ form {
       color: #222;
     }
 
-    > a,
+    >a,
     .each-img-card {
       height: -moz-fit-content;
       height: fit-content;
@@ -243,7 +279,7 @@ form {
       border-radius: 12px;
       box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
 
-      > a {
+      >a {
         width: calc(240px);
         text-decoration: none;
       }
@@ -253,19 +289,26 @@ form {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
-        img{
-          filter: brightness(1.2);}
+        img {
+          filter: brightness(1.2);
+        }
       }
     }
   }
 }
+
 #learn-more-stores {
   .store-banner {
-    .grid.grid-1 > a figure.horizontal {
+    .grid.grid-1>a figure.horizontal {
       padding-bottom: 72vh;
     }
+
     img {
       max-height: 200%;
     }
   }
+}
+
+.store-banner {
+  padding-bottom: 20px;
 }

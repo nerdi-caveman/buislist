@@ -5,16 +5,22 @@ interface IReactCarousel {
   imgSrc: [any];
   interval?: number;
   label?: any;
+  id?: number;
+  event?: string;
 }
 
 const ReactCarousel: React.FC<any> = ({
   animation,
   imgSrc,
   interval = 1500,
-  label
+  label = <></>,
+  id = 1,
+  event = "load"
 }: IReactCarousel) => {
   const supportedAnimation = ["fadein"];
+  const supportedEvent = ["load", "hover"];
   const [error, setError] = useState("");
+  const [hoverInterval, setHoverInterval] = useState();
 
   //   Animations
   const fadeInAnimation = (slide: any) => {
@@ -43,42 +49,104 @@ const ReactCarousel: React.FC<any> = ({
     setError("Animation type not supported");
     return false;
   };
+  const isEventSupported = () => {
+    if (supportedEvent.includes(event)) {
+      return true;
+    }
+    setError("Animation type not supported");
+    return false;
+  };
 
   const getAllSlides = (): NodeList => {
-    return document.querySelectorAll("#carousel .slide");
+    return document.querySelectorAll(`#carousel${id} .slide`);
   };
 
   useEffect(() => {
     if (isAnimationSupported()) {
-      const slides: any = getAllSlides();
-      let count: number = 0;
-      let slidesLength: number = slides.length;
-      for (let i: number = 1; i < slidesLength; i++) {
-        slides[i].style.zIndex = "0";
-        slides[i].style.opacity = "0";
-        slides[i].style.transform = "scale(1)";
-      }
-      slides[0].style.zIndex = "1";
-      slides[0].style.opacity = "1";
-      slides[0].style.transform = "scale(1.2)";
-
-      const startInterval = setInterval(() => {
-        if (count < slidesLength - 1) {
-          count++;
-        } else {
-          count = 0;
-        }
-
-        for (let i: number = 0; i < slidesLength; i++) {
-          if (count === i) {
-            animations.fadeIn(slides[count]);
-          } else {
-            animations.fadeOut(slides[i]);
+      if (isEventSupported()) {
+        if (event === "load") {
+          const slides: any = getAllSlides();
+          let count: number = 0;
+          let slidesLength: number = slides.length;
+          for (let i: number = 1; i < slidesLength; i++) {
+            slides[i].style.zIndex = "0";
+            slides[i].style.opacity = "0";
+            slides[i].style.transform = "scale(1)";
           }
-        }
-      }, interval);
+          slides[0].style.zIndex = "1";
+          slides[0].style.opacity = "1";
+          slides[0].style.transform = "scale(1.2)";
 
-      return () => clearInterval(startInterval);
+          const startInterval = setInterval(() => {
+            if (count < slidesLength - 1) {
+              count++;
+            } else {
+              count = 0;
+            }
+
+            for (let i: number = 0; i < slidesLength; i++) {
+              if (count === i) {
+                animations.fadeIn(slides[count]);
+              } else {
+                animations.fadeOut(slides[i]);
+              }
+            }
+          }, interval);
+
+          return () => clearInterval(startInterval);
+        }
+
+        if (event === "hover") {
+          const slides: any = getAllSlides();
+          let count: number = 0;
+          let slidesLength: number = slides.length;
+          for (let i: number = 1; i < slidesLength; i++) {
+            slides[i].style.zIndex = "0";
+            slides[i].style.opacity = "0";
+            slides[i].style.transform = "scale(1)";
+          }
+          slides[0].style.zIndex = "1";
+          slides[0].style.opacity = "1";
+          slides[0].style.transform = "scale(1.2)";
+
+          const trigger: any = document.querySelector(`#carousel${id} .slide`);
+
+          trigger.addEventListener("mouseover", () => {
+            const startInterval = setInterval(() => {
+              if (count < slidesLength - 1) {
+                count++;
+              } else {
+                count = 0;
+              }
+
+              for (let i: number = 0; i < slidesLength; i++) {
+                if (count === i) {
+                  animations.fadeIn(slides[count]);
+                } else {
+                  animations.fadeOut(slides[i]);
+                }
+              }
+            }, 3500);
+
+            setHoverInterval(startInterval);
+          });
+
+          trigger.addEventListener("mouseout", () => {
+            console.log("h");
+            for (let i: number = 1; i < slidesLength; i++) {
+              slides[i].style.zIndex = "0";
+              slides[i].style.opacity = "0";
+              slides[i].style.transform = "scale(1)";
+            }
+            slides[0].style.zIndex = "1";
+            slides[0].style.opacity = "1";
+            slides[0].style.transform = "scale(1.2)";
+            clearInterval(hoverInterval);
+          });
+
+          return () => clearInterval(hoverInterval);
+        }
+      }
     }
   });
 
@@ -89,7 +157,7 @@ const ReactCarousel: React.FC<any> = ({
   return (
     <div id="react-carousel">
       {label}
-      <div id="carousel">
+      <div id={`carousel${id}`} className="carousel">
         {imgSrc?.map((item: any, index: number) => (
           <div className="slide" key={index}>
             <img src={item.src} alt={`carousel${index}`} />

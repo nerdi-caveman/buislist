@@ -1,6 +1,7 @@
 .grid {
     display: grid;
-    grid-gap: 0.8rem;
+    grid-gap: 0.85rem;
+    grid-row-gap: 1.8rem;
 
     &.grid-6 {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -8,6 +9,9 @@
 
     &.grid-4 {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    &.grid-5 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 
     &.grid-1 {
@@ -50,7 +54,7 @@
             transform: translate(-50%, -50%);
         }
 
-        figure {
+        figure, .fig {
             border-radius: 3px;
             overflow: hidden;
             position: relative;
@@ -64,7 +68,11 @@
             }
 
             &.vertical {
-                padding-bottom: 130%;
+                padding-bottom: 120%;
+            }
+
+            &.vertical-md {
+                padding-bottom: 135%;
             }
 
             .card-overlay {

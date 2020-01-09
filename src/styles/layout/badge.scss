@@ -1,0 +1,16 @@
+.badge {
+    width: fit-content;
+    font-family: 'Nunito sans';
+    text-transform: uppercase;
+    border: 1px solid $wine;
+    border-radius: 3px;
+    border: 1px solid $wine;
+    border: 1px solid $wine;
+    color: $wine !important;
+
+    &.badge-sm {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 5px;
+    }
+}

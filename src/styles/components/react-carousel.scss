@@ -1,7 +1,7 @@
 #react-carousel {
     position: relative;
 
-    #carousel {
+    .carousel{
         width: 100%;
         position: relative;
         height: 72vh;
@@ -89,6 +89,7 @@
                         padding: 2.8px;
                     }
                 }
+
                 .rpple {
                     display: none;
                 }

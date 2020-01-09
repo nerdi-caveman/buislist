@@ -4,9 +4,9 @@ import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg"
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
 import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
-// import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
-// import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
-// import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
+import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
+import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
+import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
 import photography from "../../assets/woman-making-clay-pot-2166456.jpg";
 import ab from "../../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactDataList from "../../components/react-datalist";
@@ -16,6 +16,8 @@ import Slider from "../../components/slider";
 import ReactCarousel from "../../components/react-carousel";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
+import StoresGrid from "../../components/stores-grid";
+// import "../../styles/components/stores-grid.scss";
 
 const firstSlider = [
   { src: Storebanner, caption: "Stores" },
@@ -29,7 +31,107 @@ const carouselImages = [
   { src: carouselimg1 },
   { src: photography }
 ];
-
+const storesImages: any = [
+  {
+    carouselImages: [
+      { src: media },
+      { src: tech },
+      { src: Storebanner },
+      { src: ab },
+      { src: Productbanner }
+    ],
+    premium: true,
+    location: "Ibadan, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: Storebanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: photography },
+      { src: tech }
+    ],
+    premium: true,
+    location: "Lagos, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: carouselimg1 },
+      { src: Storebanner },
+      { src: Productbanner },
+      { src: tech },
+      { src: Accessoriesbanner }
+    ],
+    premium: true,
+    location: "Anambra, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: Productbanner },
+      { src: carouselimg1 },
+      { src: tech },
+      { src: ab },
+      { src: photography }
+    ],
+    premium: true,
+    location: "Abuja, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner }
+    ],
+    premium: true,
+    location: "Ibadan, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: Storebanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: photography },
+      { src: tech }
+    ],
+    premium: true,
+    location: "Port Harcout, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: carouselimg1 },
+      { src: Storebanner },
+      { src: Productbanner },
+      { src: tech },
+      { src: Accessoriesbanner }
+    ],
+    premium: true,
+    location: "Osogbo, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: Productbanner },
+      { src: carouselimg1 },
+      { src: tech },
+      { src: ab },
+      { src: photography }
+    ],
+    premium: false,
+    location: "Lagos, Nigeria"
+  },
+  {
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner }
+    ],
+    premium: false,
+    location: "Abuja, Nigeria"
+  }
+];
 const Home: React.FC<{}> = props => {
   const data = ["Ibadan, Nigeria", "Lagos, Nigeria", "Berlin, Germany"];
   const optionsMenu = ["All", "Stores", "Products", "People"];
@@ -139,22 +241,14 @@ const Home: React.FC<{}> = props => {
         />
       </section>
 
-
       <section id="stores" className="mini-section ">
-        <div className="store-banner">
-          <div className="grid grid-6">
-            <Link to="/" className="each-img-card">
-              <figure className="horizontal">
-                <img src={ab} alt="stores" />
-                <span className="card-overlay"></span>
-                <figcaption>Media</figcaption>
-              </figure>
-            </Link>
+        <div className="page-container">
+          <div className = "row space-between section-head">
+            <h2>Discover Stores</h2> <Link to="">SEE ALL<Icon path = {mdiChevronRight} color = "#ff5a60" size = {1.2}/></Link>
           </div>
+          <StoresGrid stores={storesImages} />
         </div>
       </section>
-
-
     </div>
   );
 };
