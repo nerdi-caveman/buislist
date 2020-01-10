@@ -1,10 +1,9 @@
-
-.grid>div .fig{
+.people-banner .grid>a .fig {
     border-radius: 3px;
     overflow: hidden;
     position: relative;
-    padding-bottom: 0 !important;
     width: inherit;
+    padding-bottom: 125% !important;
 
     &::before {
         position: absolute;
@@ -16,9 +15,16 @@
         background: linear-gradient(rgba(0, 0, 0, .1) 20%, rgba(0, 0, 0, .3));
         z-index: 1;
     }
+
+    >img {
+        filter: blur(10px);
+        -ms-filter: blur(10px);
+        will-change: transform;
+        -webkit-filter: blur(10px);
+    }
 }
 
-.store-desc {
+.people-desc {
     margin: 6px 0;
 
     .label {
@@ -67,7 +73,7 @@
     }
 }
 
-.store-details {
+.people-details {
     z-index: 9;
     border-radius: 0 !important;
     bottom: 0;
@@ -76,16 +82,19 @@
     overflow: visible !important;
     bottom: 0;
     margin: 6px 9px;
-    width: calc(100% - 20px) !important;
+    width: calc(100% - 18px) !important;
+    height: calc(100% - 12px) !important;
 
     .img {
         border-radius: 100px;
-        width: 37px;
+        width: 90px;
         overflow: hidden;
-        height: 37px !important;
-        position: relative;
-        display: inline-block;
-        border: 1px solid rgba(#000, .05);
+        height: 90px !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(#000, .15);
 
         img {
             position: absolute;
@@ -93,13 +102,13 @@
     }
 
     figcaption {
-        // position: relative !important;
+        position: absolute !important;
         bottom: 8px !important;
         display: inline-block;
-        left: auto !important;
-        margin: 0px 0 0 10px;
+        left: 50% !important;
+        margin: 0;
         font-size: 16px !important;
-        transform: none !important;
+        transform: translateX( -50%);
 
         p {
             color: #fff;
@@ -125,7 +134,7 @@
     }
 }
 
-.store-banner .each-img-card #react-carousel {
+.people-banner .each-img-card #react-carousel {
 
     .carousel {
         padding-bottom: 125%;
@@ -134,7 +143,7 @@
         .slide {
 
             &::before {
-                background: linear-gradient(rgba(0, 0, 0, .15) 30%, rgba(0, 0, 0, .4));
+                background: linear-gradient(rgba(0, 0, 0, .1) 20%, rgba(0, 0, 0, .3));
             }
 
             img {
@@ -144,20 +153,14 @@
     }
 }
 
-#stores {
-    #react-carousel .carousel .slide {
-        transition: 1.5s cubic-bezier(0.79, 0.04, 0.5, 0.98);
-    }
-}
-
 @media only screen and (max-width:1190px) {
-    .grid.grid-6 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    .grid.grid-5 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
-@media only screen and (max-width:1024px) {
-    .grid.grid-6 {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+@media only screen and (max-width:840px) {
+    .grid.grid-5 {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }

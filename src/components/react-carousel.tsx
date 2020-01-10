@@ -20,12 +20,11 @@ const ReactCarousel: React.FC<any> = ({
   const supportedAnimation = ["fadein"];
   const supportedEvent = ["load", "hover"];
   const [error, setError] = useState("");
-  const [hoverInterval, setHoverInterval] = useState();
 
   //   Animations
   const fadeInAnimation = (slide: any) => {
-    slide.style.opacity = "1.2";
-    slide.style.zIndex = "1.2";
+    slide.style.opacity = "1";
+    slide.style.zIndex = "1";
     slide.style.transform = "scale(1.2)";
   };
   const fadeOutAnimation = (slide: any) => {
@@ -33,7 +32,7 @@ const ReactCarousel: React.FC<any> = ({
     slide.style.zIndex = "0";
     setTimeout(() => {
       slide.style.transform = "scale(1)";
-    }, interval / 1.2);
+    }, interval / 1.3);
   };
   // End of animtaions
 
@@ -64,75 +63,53 @@ const ReactCarousel: React.FC<any> = ({
   useEffect(() => {
     if (isAnimationSupported()) {
       if (isEventSupported()) {
-        if (event === "load") {
-          const slides: any = getAllSlides();
-          let count: number = 0;
-          let slidesLength: number = slides.length;
-          for (let i: number = 1; i < slidesLength; i++) {
-            slides[i].style.zIndex = "0";
-            slides[i].style.opacity = "0";
-            slides[i].style.transform = "scale(1)";
+        const slides: any = getAllSlides();
+        let count: number = 0;
+        let slidesLength: number = slides.length;
+        for (let i: number = 1; i < slidesLength; i++) {
+          slides[i].style.zIndex = "0";
+          slides[i].style.opacity = "0";
+          slides[i].style.transform = "scale(1)";
+        }
+        slides[0].style.zIndex = "1";
+        slides[0].style.opacity = "1";
+
+        const toggleImages = () => {
+          if (count < slidesLength - 1) {
+            count++;
+          } else {
+            count = 0;
           }
-          slides[0].style.zIndex = "1";
-          slides[0].style.opacity = "1";
-          slides[0].style.transform = "scale(1.2)";
 
-          const startInterval = setInterval(() => {
-            if (count < slidesLength - 1) {
-              count++;
+          for (let i: number = 0; i < slidesLength; i++) {
+            if (count === i) {
+              animations.fadeIn(slides[count]);
             } else {
-              count = 0;
+              animations.fadeOut(slides[i]);
             }
+          }
+        };
 
-            for (let i: number = 0; i < slidesLength; i++) {
-              if (count === i) {
-                animations.fadeIn(slides[count]);
-              } else {
-                animations.fadeOut(slides[i]);
-              }
-            }
-          }, interval);
+        
+        if (event === "load") {
+          toggleImages();
+          const startInterval = setInterval(toggleImages, interval);
 
           return () => clearInterval(startInterval);
         }
 
         if (event === "hover") {
-          const slides: any = getAllSlides();
-          let count: number = 0;
-          let slidesLength: number = slides.length;
-          for (let i: number = 1; i < slidesLength; i++) {
-            slides[i].style.zIndex = "0";
-            slides[i].style.opacity = "0";
-            slides[i].style.transform = "scale(1)";
-          }
-          slides[0].style.zIndex = "1";
-          slides[0].style.opacity = "1";
-          slides[0].style.transform = "scale(1.2)";
-
           const trigger: any = document.querySelector(`#carousel${id} .slide`);
+          let startInterval: any = null;
 
           trigger.addEventListener("mouseover", () => {
-            const startInterval = setInterval(() => {
-              if (count < slidesLength - 1) {
-                count++;
-              } else {
-                count = 0;
-              }
-
-              for (let i: number = 0; i < slidesLength; i++) {
-                if (count === i) {
-                  animations.fadeIn(slides[count]);
-                } else {
-                  animations.fadeOut(slides[i]);
-                }
-              }
-            }, 3500);
-
-            setHoverInterval(startInterval);
+            toggleImages();
+            startInterval = setInterval(toggleImages, interval);
           });
 
           trigger.addEventListener("mouseout", () => {
-            console.log("h");
+            clearInterval(startInterval);
+            count = 0;
             for (let i: number = 1; i < slidesLength; i++) {
               slides[i].style.zIndex = "0";
               slides[i].style.opacity = "0";
@@ -141,10 +118,9 @@ const ReactCarousel: React.FC<any> = ({
             slides[0].style.zIndex = "1";
             slides[0].style.opacity = "1";
             slides[0].style.transform = "scale(1.2)";
-            clearInterval(hoverInterval);
           });
 
-          return () => clearInterval(hoverInterval);
+          return () => clearInterval(startInterval);
         }
       }
     }

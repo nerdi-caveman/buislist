@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import Head from "../../components/head";
+import furniture from "../../assets/apartment-architecture-art-books-276724.jpg";
+import health from "../../assets/escada-perfume-bottle-on-table-724635.jpg";
+import gadget from "../../assets/top-view-photo-of-laptop-near-camera-3178938.jpg";
+import art from "../../assets/man-making-clay-pot-1102292.jpg";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
+import food from "../../assets/barbecue-bbq-beef-cooked-410648.jpg";
 import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
+import automobile from "../../assets/mercedes-benz-parked-in-a-row-164634.jpg";
 import media from "../../assets/headphones_camera_retro_122094_3840x2400.jpg";
+import pet from "../../assets/close-up-of-dog-yawning-248307.jpg";
 import Productbanner from "../../assets/brown-top-hanging-on-rack-1488464.jpg";
 import Accessoriesbanner from "../../assets/headphones_bw_headset_120277_3840x2400.jpg";
 import photography from "../../assets/woman-making-clay-pot-2166456.jpg";
@@ -17,12 +24,26 @@ import ReactCarousel from "../../components/react-carousel";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
 import StoresGrid from "../../components/stores-grid";
+import ProfileGrid from "../../components/profile-grid";
 // import "../../styles/components/stores-grid.scss";
 
 const firstSlider = [
   { src: Storebanner, caption: "Stores" },
   { src: tech, caption: "Products" },
   { src: photography, caption: "People" }
+];
+const secondSlider = [
+  { src: Productbanner, caption: "Fashion" },
+  { src: health, caption: "Health & Beauty" },
+  { src: gadget, caption: "Phones, Pcs & Gadgets " },
+  { src: food, caption: "Agriculture & Food" },
+  { src: carouselimg1, caption: "Electronics" },
+  { src: art, caption: "Arts, Sports & Outdoor" },
+  { src: furniture, caption: "Furnitures & Appliances" },
+  { src: tech, caption: "Repair & Construction" },
+  { src: tech, caption: "Real Estate" },
+  { src: automobile, caption: "Automobile" },
+  { src: pet, caption: "Pets" }
 ];
 const carouselImages = [
   { src: Storebanner },
@@ -31,8 +52,9 @@ const carouselImages = [
   { src: carouselimg1 },
   { src: photography }
 ];
-const storesImages: any = [
+let storesImages: any = [
   {
+    id: 1,
     carouselImages: [
       { src: media },
       { src: tech },
@@ -44,6 +66,7 @@ const storesImages: any = [
     location: "Ibadan, Nigeria"
   },
   {
+    id: 2,
     carouselImages: [
       { src: Storebanner },
       { src: media },
@@ -55,6 +78,7 @@ const storesImages: any = [
     location: "Lagos, Nigeria"
   },
   {
+    id: 3,
     carouselImages: [
       { src: carouselimg1 },
       { src: Storebanner },
@@ -66,6 +90,7 @@ const storesImages: any = [
     location: "Anambra, Nigeria"
   },
   {
+    id: 4,
     carouselImages: [
       { src: Productbanner },
       { src: carouselimg1 },
@@ -77,6 +102,7 @@ const storesImages: any = [
     location: "Abuja, Nigeria"
   },
   {
+    id: 5,
     carouselImages: [
       { src: tech },
       { src: Productbanner },
@@ -88,6 +114,7 @@ const storesImages: any = [
     location: "Ibadan, Nigeria"
   },
   {
+    id: 6,
     carouselImages: [
       { src: Storebanner },
       { src: media },
@@ -99,6 +126,7 @@ const storesImages: any = [
     location: "Port Harcout, Nigeria"
   },
   {
+    id: 7,
     carouselImages: [
       { src: carouselimg1 },
       { src: Storebanner },
@@ -110,6 +138,7 @@ const storesImages: any = [
     location: "Osogbo, Nigeria"
   },
   {
+    id: 8,
     carouselImages: [
       { src: Productbanner },
       { src: carouselimg1 },
@@ -121,6 +150,7 @@ const storesImages: any = [
     location: "Lagos, Nigeria"
   },
   {
+    id: 9,
     carouselImages: [
       { src: tech },
       { src: Productbanner },
@@ -132,6 +162,35 @@ const storesImages: any = [
     location: "Abuja, Nigeria"
   }
 ];
+
+const peopleProfile = [
+  {
+    src: tech
+  },
+  {
+    src: Productbanner
+  },
+  {
+    src: Accessoriesbanner
+  },
+  {
+    src: Imagebanner
+  },
+  {
+    src: carouselimg1
+  },
+  {
+    src: media
+  }
+];
+
+const favourite = [1,2,4,6,8,9];
+
+for(let i in favourite){
+  let storeIndex = storesImages.find((item: { id: any; })=>item.id === favourite[i]);
+  storeIndex ? storeIndex['favourite'] = true : storeIndex['favourite'] = false;
+}
+
 const Home: React.FC<{}> = props => {
   const data = ["Ibadan, Nigeria", "Lagos, Nigeria", "Berlin, Germany"];
   const optionsMenu = ["All", "Stores", "Products", "People"];
@@ -172,6 +231,10 @@ const Home: React.FC<{}> = props => {
       </div>
     );
   };
+
+  const addStoreFavourite = (item:any, value:any) => {
+    item.favourite = !value;
+  }
 
   return (
     <div className="home">
@@ -243,10 +306,52 @@ const Home: React.FC<{}> = props => {
 
       <section id="stores" className="mini-section ">
         <div className="page-container">
-          <div className = "row space-between section-head">
-            <h2>Discover Stores</h2> <Link to="">SEE ALL<Icon path = {mdiChevronRight} color = "#ff5a60" size = {1.2}/></Link>
+          <div className="row space-between section-head">
+            <h2>Discover Stores</h2>
+            <Link to="">
+              SEE ALL
+              <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
+            </Link>
           </div>
-          <StoresGrid stores={storesImages} />
+          <StoresGrid stores={storesImages} addToFavourite ={addStoreFavourite} />
+        </div>
+      </section>
+
+      <section id="stores" className="mini-section ">
+        <div className="page-container">
+          <div className="row space-between section-head">
+            <h2>Explore more</h2>
+          </div>
+          <Slider images={secondSlider} id="slider3" margin={25} />
+        </div>
+      </section>
+
+      <section id="learn-more-stores" className="mini-section ">
+        <div className="page-container">
+          <div className="row space-between section-head">
+            <h2>Explore more</h2>
+          </div>
+          <div className="grid grid-1">
+            <figure className=" vertical-md">
+              <div className="img">
+                <img src={Storebanner} alt="" />
+              </div>
+              <figcaption>Hu</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="people" className="mini-section ">
+        <div className="page-container">
+          <div className="row space-between section-head">
+            <h2>Discover talented people</h2>
+            <Link to="">
+              SEE ALL
+              <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
+            </Link>
+          </div>
+          <ProfileGrid stores={peopleProfile} grid={5} />
         </div>
       </section>
     </div>

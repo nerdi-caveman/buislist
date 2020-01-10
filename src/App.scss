@@ -60,6 +60,7 @@ a {
 @import "./styles/layout/grid.scss";
 @import "./styles/layout/badge.scss";
 @import "./styles/components/stores-grid.scss";
+@import "./styles/components/profile-grid.scss";
 
 .default {
   @import "./styles/theme/default.scss";
@@ -309,6 +310,50 @@ form {
   }
 }
 
-.store-banner {
+.people-banner {
   padding-bottom: 20px;
+}
+
+.favourite {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+
+  input {
+    display: none;
+  }
+
+  input:checked + label .selected{
+    display: block;
+  }
+  input:checked + label .not-selected{
+    display: none ;
+  }
+
+  label {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    display: flex;
+    padding: 1px;
+    justify-content: center;
+    border-radius: 100px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+
+    svg {
+      margin: auto;
+      transform:translateY(1px);
+    }
+
+    .selected {
+      display: none;
+    }
+    .not-selected {
+      display: block;
+    }
+  }
 }
