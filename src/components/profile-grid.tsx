@@ -1,32 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg";
-import ReactCarousel from "./react-carousel";
 import badge from "../assets/verified-badge.png";
 import Icon from "@mdi/react";
-import { mdiMapMarker, mdiStar } from "@mdi/js";
+import { mdiHeart, mdiHeartOutline } from "@mdi/js";
 
 interface IProfileGrid {
-  stores: [any];
+  profile: any;
   grid: number;
+  addToFavourite: any;
 }
 
-const ProfileGrid: React.FC<any> = ({ stores, grid = 6 }: IProfileGrid) => {
+const ProfileGrid: React.FC<any> = ({
+  profile,
+  grid = 6,
+  addToFavourite
+}: IProfileGrid) => {
+  const [profileState, setProfileState] = useState(profile);
+
+  const updateFavourite = (item: any, index: number) => {
+    const newProfiles = [...profileState];
+    newProfiles[index]["favourite"] = !item.favourite;
+    setProfileState(() => [...newProfiles]);
+
+    addToFavourite(item, !item.favourite);
+  };
+
   return (
     <div className="people-banner">
       <div className={`grid grid-${grid}`}>
-        {stores.map((item, index) => (
+        {profileState.map((item: any, index: number) => (
           <div key={index}>
+            <div className="favourite">
+              <input
+                checked={item.favourite !== undefined ? item.favourite: false}
+                type="checkbox"
+                id={"peoplefavourite" + index}
+                name={"peoplefavourite" + index}
+                onChange={() => updateFavourite(item, index)}
+              />
+              <label htmlFor={`peoplefavourite${index}`}>
+                <Icon
+                  className="not-selected"
+                  path={mdiHeartOutline}
+                  size={0.9}
+                  color="#444444"
+                />
+                <Icon
+                  className="selected"
+                  path={mdiHeart}
+                  size={0.9}
+                  color="#444444"
+                />
+              </label>
+            </div>
             <Link to="/" className="each-img-card">
               <div className="vertical-md fig">
-                <span className="card-overlay"></span>
                 <img src={item.src} alt="people" className="profile-back" />
                 <figure className="people-details">
                   <div className="img">
                     <img src={item.src} alt="stores" />
                   </div>
                   <figcaption>
-                    <p className="name">Nike</p> <img src={badge} alt="badge" />
+                    <p className="name">Inioluwa Sogelola <img src={badge} alt="badge" /></p>
                   </figcaption>
                 </figure>
               </div>

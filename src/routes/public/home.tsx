@@ -7,6 +7,7 @@ import art from "../../assets/man-making-clay-pot-1102292.jpg";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
+import rockStar from "../../assets/person-cutting-white-cloth-cropped.jpg";
 import food from "../../assets/barbecue-bbq-beef-cooked-410648.jpg";
 import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
 import automobile from "../../assets/mercedes-benz-parked-in-a-row-164634.jpg";
@@ -25,7 +26,8 @@ import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
 import StoresGrid from "../../components/stores-grid";
 import ProfileGrid from "../../components/profile-grid";
-// import "../../styles/components/stores-grid.scss";
+import ProductGrid from "../../components/product-grid";
+import "../../styles/pages/home.scss";
 
 const firstSlider = [
   { src: Storebanner, caption: "Stores" },
@@ -52,7 +54,7 @@ const carouselImages = [
   { src: carouselimg1 },
   { src: photography }
 ];
-let storesImages: any = [
+let featuredImages: any = [
   {
     id: 1,
     carouselImages: [
@@ -124,6 +126,74 @@ let storesImages: any = [
     ],
     premium: true,
     location: "Port Harcout, Nigeria"
+  }
+];
+
+let storesImages: any = [
+  {
+    id: 1,
+    carouselImages: [{ src: media }, { src: tech }],
+    premium: true,
+    location: "Ibadan, Nigeria"
+  },
+  {
+    id: 2,
+    carouselImages: [
+      { src: Storebanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: photography }
+    ],
+    premium: false,
+    location: "Lagos, Nigeria"
+  },
+  {
+    id: 3,
+    carouselImages: [
+      { src: carouselimg1 },
+      { src: Storebanner },
+      { src: Productbanner },
+      { src: tech },
+      { src: Accessoriesbanner }
+    ],
+    premium: false,
+    location: "Anambra, Nigeria"
+  },
+  {
+    id: 4,
+    carouselImages: [
+      { src: Productbanner },
+      { src: carouselimg1 },
+      { src: tech },
+      { src: ab },
+      { src: photography }
+    ],
+    premium: true,
+    location: "Abuja, Nigeria"
+  },
+  {
+    id: 5,
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner }
+    ],
+    premium: true,
+    location: "Ibadan, Nigeria"
+  },
+  {
+    id: 6,
+    carouselImages: [
+      { src: Storebanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: photography },
+      { src: tech }
+    ],
+    premium: false,
+    location: "Port Harcout, Nigeria"
   },
   {
     id: 7,
@@ -160,6 +230,42 @@ let storesImages: any = [
     ],
     premium: false,
     location: "Abuja, Nigeria"
+  },
+  {
+    id: 10,
+    carouselImages: [
+      { src: carouselimg1 },
+      { src: Storebanner },
+      { src: Productbanner },
+      { src: tech },
+      { src: Accessoriesbanner }
+    ],
+    premium: true,
+    location: "Osogbo, Nigeria"
+  },
+  {
+    id: 11,
+    carouselImages: [
+      { src: Productbanner },
+      { src: carouselimg1 },
+      { src: tech },
+      { src: ab },
+      { src: photography }
+    ],
+    premium: false,
+    location: "Lagos, Nigeria"
+  },
+  {
+    id: 12,
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner }
+    ],
+    premium: false,
+    location: "Abuja, Nigeria"
   }
 ];
 
@@ -184,11 +290,15 @@ const peopleProfile = [
   }
 ];
 
-const favourite = [1,2,4,6,8,9];
+const favourite = [1, 2, 4, 6, 8, 9];
 
-for(let i in favourite){
-  let storeIndex = storesImages.find((item: { id: any; })=>item.id === favourite[i]);
-  storeIndex ? storeIndex['favourite'] = true : storeIndex['favourite'] = false;
+for (let i in favourite) {
+  let storeIndex = storesImages.find(
+    (item: { id: any }) => item.id === favourite[i]
+  );
+  storeIndex
+    ? (storeIndex["favourite"] = true)
+    : (storeIndex["favourite"] = false);
 }
 
 const Home: React.FC<{}> = props => {
@@ -232,13 +342,13 @@ const Home: React.FC<{}> = props => {
     );
   };
 
-  const addStoreFavourite = (item:any, value:any) => {
+  const addStoreFavourite = (item: any, value: any) => {
     item.favourite = !value;
-  }
+  };
 
   return (
-    <div className="home">
-      <Head title="Local stores and business nearby" />
+    <div id= "home" className="home">
+      <Head title="Find talented people, great products, and local stores nearby" />
       <section className="landing-page-header">
         <div className="banner-img">
           <Img src={Imagebanner} alt="Banner" />
@@ -304,16 +414,40 @@ const Home: React.FC<{}> = props => {
         />
       </section>
 
-      <section id="stores" className="mini-section ">
+      <section id="featured-stores" className="mini-section ">
         <div className="page-container">
           <div className="row space-between section-head">
-            <h2>Discover Stores</h2>
+            <h2>Featured Stores</h2>
+          </div>
+          <StoresGrid
+            id="2"
+            stores={featuredImages}
+            addToFavourite={addStoreFavourite}
+          />
+          <div className="see-all">
             <Link to="">
-              SEE ALL
+              See all stores
               <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
             </Link>
           </div>
-          <StoresGrid stores={storesImages} addToFavourite ={addStoreFavourite} />
+        </div>
+      </section>
+
+      <section id="stores" className="mini-section ">
+        <div className="page-container">
+          <div className="row space-between section-head">
+            <h2>Top-rated Product</h2>
+          </div>
+          <ProductGrid
+            product={storesImages}
+            addToFavourite={addStoreFavourite}
+          />
+          <div className="see-all">
+            <Link to="">
+              See all products
+              <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -332,12 +466,14 @@ const Home: React.FC<{}> = props => {
             <h2>Explore more</h2>
           </div>
           <div className="grid grid-1">
-            <figure className=" vertical-md">
-              <div className="img">
-                <img src={Storebanner} alt="" />
+            <div>
+              <div className="fig horizontal">
+                <span className="card-overlay"></span>
+                <div className="img">
+                  <img src={rockStar} alt="" />
+                </div>
               </div>
-              <figcaption>Hu</figcaption>
-            </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -346,12 +482,18 @@ const Home: React.FC<{}> = props => {
         <div className="page-container">
           <div className="row space-between section-head">
             <h2>Discover talented people</h2>
+          </div>
+          <ProfileGrid
+            profile={peopleProfile}
+            grid={5}
+            addToFavourite={addStoreFavourite}
+          />
+          <div className="see-all">
             <Link to="">
-              SEE ALL
+              Find all people
               <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
             </Link>
           </div>
-          <ProfileGrid stores={peopleProfile} grid={5} />
         </div>
       </section>
     </div>

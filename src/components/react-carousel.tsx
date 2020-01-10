@@ -131,7 +131,7 @@ const ReactCarousel: React.FC<any> = ({
   }
 
   return (
-    <div id="react-carousel">
+    <div id = {`react-carousel${id}`} className="react-carousel">
       {label}
       <div id={`carousel${id}`} className="carousel">
         {imgSrc?.map((item: any, index: number) => (

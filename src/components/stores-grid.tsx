@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactCarousel from "./react-carousel";
@@ -6,18 +6,17 @@ import badge from "../assets/verified-badge.png";
 import Icon from "@mdi/react";
 import { mdiMapMarker, mdiStar, mdiHeart, mdiHeartOutline } from "@mdi/js";
 
-interface addToFavourite{
-    
-}
 interface IStoresGrid {
   stores: any;
   grid: number;
+  id:string;
   addToFavourite: any;
 }
 
 const StoresGrid: React.FC<any> = ({
   stores,
   grid = 6,
+  id ='1',
   addToFavourite
 }: IStoresGrid) => {
   const [storesState, setStoresState] = useState(stores);
@@ -48,13 +47,13 @@ const StoresGrid: React.FC<any> = ({
           <div key={index}>
             <div className="favourite">
               <input
-                checked={item.favourite}
+                checked={item.favourite !== undefined ? item.favourite: false}
                 type="checkbox"
-                id={"favourite" + index}
-                name={"favourite" + index}
+                id={"favourite" + index+id}
+                name={"favourite" + index+id}
                 onChange={()=>updateFavourite(item, index)}
               />
-              <label htmlFor={`favourite${index}`}>
+              <label htmlFor={`favourite${index}${id}`}>
                 <Icon
                   className="not-selected"
                   path={mdiHeartOutline}
@@ -76,9 +75,8 @@ const StoresGrid: React.FC<any> = ({
                   imgSrc={item.carouselImages}
                   interval={3000}
                   event="hover"
-                  id={index + 2}
+                  id={index+id + 2}
                 />
-                <span className="card-overlay"></span>
                 <figure className="store-details">
                   <div className="img">
                     <img src={ab} alt="stores" />

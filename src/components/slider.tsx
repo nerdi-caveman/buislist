@@ -8,10 +8,11 @@ interface ISlider {
   images: any[];
   id: string;
   margin?: number;
+  isLink?: boolean;
 }
 
 const Slider: React.FC<any> = (
-  { images, id, margin = 15 }: ISlider,
+  { images, id, margin = 15, isLink = true }: ISlider,
   ...props
 ) => {
   //   const [count, setCount] = useState(0);
@@ -103,7 +104,7 @@ const Slider: React.FC<any> = (
   }, [id, margin]);
 
   return (
-    <div id={id + "container"}  style={{ position: "relative" }}>
+    <div id={id + "container"} style={{ position: "relative" }}>
       <button id={id + "prev"} className="slider-btn prev">
         <Icon path={mdiChevronLeft} size={1} />
       </button>
@@ -118,15 +119,28 @@ const Slider: React.FC<any> = (
         <div className="slider slider-4">
           {images.map((item, index) => (
             <div key={index} className="each-img-card">
-              <Link to={item.url || ""}>
-                <figure>
-                  <div className="img-slide horizontal-md">
-                    <img src={item.src} alt="stores" />
-                    <span className="card-overlay"></span>
-                  </div>
-                  <figcaption>{item.caption}</figcaption>
-                </figure>
-              </Link>
+              {isLink && (
+                <Link to={item.url || ""}>
+                  <figure>
+                    <div className="img-slide horizontal-md">
+                      <img src={item.src} alt="stores" />
+                      <span className="card-overlay"></span>
+                    </div>
+                    <figcaption>{item.caption}</figcaption>
+                  </figure>
+                </Link>
+              )}
+              {!isLink && (
+                <div>
+                  <figure>
+                    <div className="img-slide horizontal-md">
+                      <img src={item.src} alt="stores" />
+                      <span className="card-overlay"></span>
+                    </div>
+                    <figcaption>{item.caption}</figcaption>
+                  </figure>
+                </div>
+              )}
             </div>
           ))}
         </div>

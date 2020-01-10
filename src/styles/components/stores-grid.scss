@@ -1,5 +1,4 @@
-
-.grid>div .fig{
+.grid>div .fig {
     border-radius: 3px;
     overflow: hidden;
     position: relative;
@@ -125,7 +124,7 @@
     }
 }
 
-.store-banner .each-img-card #react-carousel {
+.store-banner .each-img-card .react-carousel {
 
     .carousel {
         padding-bottom: 125%;
@@ -145,19 +144,7 @@
 }
 
 #stores {
-    #react-carousel .carousel .slide {
+    .react-carousel .carousel .slide {
         transition: 1.5s cubic-bezier(0.79, 0.04, 0.5, 0.98);
-    }
-}
-
-@media only screen and (max-width:1190px) {
-    .grid.grid-6 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
-}
-
-@media only screen and (max-width:1024px) {
-    .grid.grid-6 {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

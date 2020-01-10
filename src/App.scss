@@ -219,6 +219,20 @@ form {
   padding: 45px 0;
   padding-bottom: 0;
 
+  .see-all {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 10px 0;
+
+    svg {
+      vertical-align: bottom;
+    }
+
+    * {
+      color: $peach;
+    }
+  }
+
   h2 {
     margin: 20px 0;
     font-size: 1.7em;
@@ -311,7 +325,7 @@ form {
 }
 
 .people-banner {
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 .favourite {
@@ -323,17 +337,18 @@ form {
     display: none;
   }
 
-  input:checked + label .selected{
+  input:checked+label .selected {
     display: block;
   }
-  input:checked + label .not-selected{
-    display: none ;
+
+  input:checked+label .not-selected {
+    display: none;
   }
 
   label {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 7px;
+    top: 7px;
     width: 30px;
     height: 30px;
     background: #fff;
@@ -346,14 +361,77 @@ form {
 
     svg {
       margin: auto;
-      transform:translateY(1px);
+      transform: translateY(1px);
     }
 
     .selected {
       display: none;
     }
+
     .not-selected {
       display: block;
     }
+  }
+}
+
+// Responsiveness
+@media only screen and (max-width:768px) {
+  .favourite label svg {
+    transform: translateY(0);
+  }
+
+  section .page-container {
+    margin: 0 30px;
+  }
+
+  #explore,
+  .mini-section {
+    padding: 35px 0;
+  }
+
+  #react-carousel1 {
+    margin: 0 30px;
+
+    .carousel {
+      height: 65vh;
+    }
+
+    .carousel-label {
+      left: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width:480px) {
+  #react-carousel1 {
+    margin: 0 15px;
+  }
+
+  #explore,
+  .mini-section {
+    padding: 20px 0;
+  }
+
+  #explore .section-head,
+  .mini-section .section-head {
+    margin: 20px 0;
+  }
+
+  #slider1 {
+    padding: 20px 20px;
+
+    .slider figcaption {
+      padding: 11px 14px;
+    }
+
+    .slider>a>a,
+    .slider .each-img-card>a {
+      width: calc(160px);
+      text-decoration: none;
+    }
+  }
+
+  section .page-container {
+    margin: 0 15px;
   }
 }
