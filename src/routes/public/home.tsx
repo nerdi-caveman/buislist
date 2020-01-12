@@ -7,7 +7,7 @@ import art from "../../assets/man-making-clay-pot-1102292.jpg";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
-import rockStar from "../../assets/person-cutting-white-cloth-cropped.jpg";
+import rockStar from "../../assets/person-cutting-white-cloth-2973399.jpg";
 import food from "../../assets/barbecue-bbq-beef-cooked-410648.jpg";
 import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
 import automobile from "../../assets/mercedes-benz-parked-in-a-row-164634.jpg";
