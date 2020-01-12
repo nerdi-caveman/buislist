@@ -328,6 +328,14 @@ form {
   padding-bottom: 0px;
 }
 
+.product-banner {
+
+  .slider .each-img-card .img-slide.horizontal-md,
+  .slider>a .img-slide.horizontal-md {
+    padding-bottom: 125% !important;
+  }
+}
+
 .favourite {
   position: absolute;
   z-index: 999;

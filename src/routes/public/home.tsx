@@ -351,7 +351,7 @@ const Home: React.FC<{}> = props => {
       <Head title="Find talented people, great products, and local stores nearby" />
       <section className="landing-page-header">
         <div className="banner-img">
-          <Img src={Imagebanner} alt="Banner" />
+          <img src={Imagebanner} alt="Banner" />
         </div>
         <div className="header-search">
           <div className="page-container">
