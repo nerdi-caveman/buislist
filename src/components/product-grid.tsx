@@ -60,7 +60,7 @@ const ProductGrid: React.FC<any> = ({
                   <Slider
                     id={"slider22"+index}
                     images={item.carouselImages}
-                    margin={15}
+                    margin={6}
                   />
               </div>
               <div className="people-desc">

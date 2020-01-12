@@ -59,7 +59,7 @@
                 padding-bottom: 128%;
             }
             &.vertical-md {
-                padding-bottom: 130%;
+                padding-bottom: 128%;
             }
 
             .card-overlay {
@@ -123,6 +123,7 @@
     >div {
         display: inline-block;
         width: 100%;
+        margin-right:6px !important;
 
         figure,
         .fig {
