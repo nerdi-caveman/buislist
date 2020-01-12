@@ -19,7 +19,7 @@ import photography from "../../assets/woman-making-clay-pot-2166456.jpg";
 import ab from "../../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactDataList from "../../components/react-datalist";
 import { Link } from "react-router-dom";
-import Img from "react-image";
+// import Img from "react-image";
 import Slider from "../../components/slider";
 import ReactCarousel from "../../components/react-carousel";
 import Icon from "@mdi/react";
