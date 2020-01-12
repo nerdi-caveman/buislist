@@ -133,7 +133,7 @@ const Slider: React.FC<any> = (
               {!isLink && (
                 <div>
                   <figure>
-                    <div className="img-slide horizontal-md">
+                    <div className="img-slide vertical-md">
                       <img src={item.src} alt="stores" />
                       <span className="card-overlay"></span>
                     </div>
