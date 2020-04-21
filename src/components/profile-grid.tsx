@@ -15,6 +15,7 @@ const ProfileGrid: React.FC<any> = ({
   grid = 6,
   addToFavourite
 }: IProfileGrid) => {
+  
   const [profileState, setProfileState] = useState(profile);
 
   const updateFavourite = (item: any, index: number) => {
@@ -66,7 +67,7 @@ const ProfileGrid: React.FC<any> = ({
                 </figure>
               </div>
               <div className="people-desc">
-                {item.premium && <div className="badge badge-sm">Premium</div>}
+                {item.premium && <div className="badge badge-sm">Pro</div>}
                 <p className="label label-sm ">Photography</p>
                 <p className="desc">
                   We build the best shoes for sports. Just do it✔

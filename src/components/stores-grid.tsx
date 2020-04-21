@@ -87,7 +87,7 @@ const StoresGrid: React.FC<any> = ({
                 </figure>
               </div>
               <div className="store-desc">
-                {item.premium && <div className="badge badge-sm">Premium</div>}
+                {item.premium && <div className="badge badge-sm">Pro</div>}
                 <p className="label label-sm ">
                   <Icon path={mdiMapMarker} size={0.55} color="#8b8b8b" />{" "}
                   {item.location}

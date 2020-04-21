@@ -7,7 +7,6 @@ import art from "../../assets/man-making-clay-pot-1102292.jpg";
 import Imagebanner from "../../assets/people-near-vegetable-display-2919590.jpg";
 import Storebanner from "../../assets/barts-store-signage-1884573.jpg";
 import tech from "../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
-import rockStar from "../../assets/person-cutting-white-cloth-2973399.jpg";
 import food from "../../assets/barbecue-bbq-beef-cooked-410648.jpg";
 import carouselimg1 from "../../assets/cooked-meat-on-plate-2313686.jpg";
 import automobile from "../../assets/mercedes-benz-parked-in-a-row-164634.jpg";
@@ -19,20 +18,17 @@ import photography from "../../assets/woman-making-clay-pot-2166456.jpg";
 import ab from "../../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactDataList from "../../components/react-datalist";
 import { Link } from "react-router-dom";
-// import Img from "react-image";
 import Slider from "../../components/slider";
 import ReactCarousel from "../../components/react-carousel";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
 import StoresGrid from "../../components/stores-grid";
-import ProfileGrid from "../../components/profile-grid";
 import ProductGrid from "../../components/product-grid";
 import "../../styles/pages/home.scss";
 
 const firstSlider = [
   { src: Storebanner, caption: "Stores" },
-  { src: tech, caption: "Products" },
-  { src: photography, caption: "People" }
+  { src: tech, caption: "Products" }
 ];
 const secondSlider = [
   { src: Productbanner, caption: "Fashion" },
@@ -54,7 +50,7 @@ const carouselImages = [
   { src: carouselimg1 },
   { src: photography }
 ];
-let featuredImages: any = [
+let featuredStores: any = [
   {
     id: 1,
     carouselImages: [
@@ -269,27 +265,6 @@ let storesImages: any = [
   }
 ];
 
-const peopleProfile = [
-  {
-    src: tech
-  },
-  {
-    src: Productbanner
-  },
-  {
-    src: Accessoriesbanner
-  },
-  {
-    src: Imagebanner
-  },
-  {
-    src: carouselimg1
-  },
-  {
-    src: media
-  }
-];
-
 const favourite = [1, 2, 4, 6, 8, 9];
 
 for (let i in favourite) {
@@ -303,7 +278,7 @@ for (let i in favourite) {
 
 const Home: React.FC<{}> = props => {
   const data = ["Ibadan, Nigeria", "Lagos, Nigeria", "Berlin, Germany"];
-  const optionsMenu = ["All", "Stores", "Products", "People"];
+  const optionsMenu = ["All", "Stores", "Products"];
   const [menu, setMenu] = useState(optionsMenu[0]);
   const itemData = [
     "Perfume oils",
@@ -322,14 +297,15 @@ const Home: React.FC<{}> = props => {
       item.toLowerCase().match(regex) ? true : false
     );
     setItems(fetchData);
+    console.log(fetchData);
   };
 
-  const SliderLabel: React.FC = () => {
+  const SliderLabel: React.FC<any> = () => {
     return (
       <div className="carousel-label">
         <p className="label">INTRODUCING</p>
         <h2>Uber Stores</h2>
-        <p className="desc">Grow your business, manage orders, and more</p>
+        <p className="desc">Grow your business, manage orders, engage with your customers and more</p>
 
         <Link to="">
           <button className="btn btn-md">
@@ -342,7 +318,7 @@ const Home: React.FC<{}> = props => {
     );
   };
 
-  const addStoreFavourite = (item: any, value: any) => {
+  const addStoreFavourite = (item: any, value: boolean) => {
     item.favourite = !value;
   };
 
@@ -417,11 +393,11 @@ const Home: React.FC<{}> = props => {
       <section id="featured-stores" className="mini-section ">
         <div className="page-container">
           <div className="row space-between section-head">
-            <h2>Featured Stores</h2>
+            <h2>Stores you might like</h2>
           </div>
           <StoresGrid
             id="2"
-            stores={featuredImages}
+            stores={featuredStores}
             addToFavourite={addStoreFavourite}
           />
           <div className="see-all">
@@ -436,7 +412,16 @@ const Home: React.FC<{}> = props => {
       <section id="stores" className="mini-section ">
         <div className="page-container">
           <div className="row space-between section-head">
-            <h2>Top-rated Product</h2>
+            <h2>Products by category</h2>
+          </div>
+          <Slider images={secondSlider} id="slider3" margin={25} />
+        </div>
+      </section>
+
+      <section id="stores" className="mini-section ">
+        <div className="page-container">
+          <div className="row space-between section-head">
+            <h2>Popular products</h2>
           </div>
           <ProductGrid
             product={storesImages}
@@ -451,51 +436,6 @@ const Home: React.FC<{}> = props => {
         </div>
       </section>
 
-      <section id="stores" className="mini-section ">
-        <div className="page-container">
-          <div className="row space-between section-head">
-            <h2>Explore more</h2>
-          </div>
-          <Slider images={secondSlider} id="slider3" margin={25} />
-        </div>
-      </section>
-
-      <section id="learn-more-stores" className="mini-section ">
-        <div className="page-container">
-          <div className="row space-between section-head">
-            <h2>Explore more</h2>
-          </div>
-          <div className="grid grid-1">
-            <div>
-              <div className="fig horizontal">
-                <span className="card-overlay"></span>
-                <div className="img">
-                  <img src={rockStar} alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="people" className="mini-section ">
-        <div className="page-container">
-          <div className="row space-between section-head">
-            <h2>Discover talented people</h2>
-          </div>
-          <ProfileGrid
-            profile={peopleProfile}
-            grid={5}
-            addToFavourite={addStoreFavourite}
-          />
-          <div className="see-all">
-            <Link to="">
-              Find all people
-              <Icon path={mdiChevronRight} color="#ff5a60" size={1.2} />
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

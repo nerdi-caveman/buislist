@@ -64,7 +64,7 @@ const ProductGrid: React.FC<any> = ({
                   />
               </div>
               <div className="people-desc">
-                {item.premium && <div className="badge badge-sm">Promoted</div>}
+                {item.premium && <div className="badge badge-sm badge-sm-back">Promoted</div>}
                 <p className="label label-sm ">Phones, pcs & Gadgets </p>
                 <p className="desc">JBL Headphones
                 </p>
