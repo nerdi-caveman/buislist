@@ -55,10 +55,12 @@ a {
 }
 
 @import "./styles/components/datalist.scss";
+@import "./styles/components/tags.scss";
 @import "./styles/components/react-carousel.scss";
 @import "./styles/layout/button.scss";
 @import "./styles/layout/grid.scss";
 @import "./styles/layout/badge.scss";
+@import "./styles/layout/popup.scss";
 @import "./styles/components/stores-grid.scss";
 @import "./styles/components/profile-grid.scss";
 
@@ -94,21 +96,49 @@ header {
       width: 45px;
       background-position: center;
       background-size: cover;
-      margin: 0 15px;
+      margin: 0 30px;
     }
 
     #main-nav {
+      margin: 0 30px;
+
       li {
         display: inline-block;
-        vertical-align: super;
+        vertical-align: middle;
         margin: 0 15px;
         cursor: pointer;
         color: #fff;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
 
     // .hdr-left {}
   }
+}
+
+.main-container {
+  margin-top: 100px;
+  padding: 15px 0;
+}
+
+.page-container {
+  margin: 0 80px;
+  width: auto;
+}
+
+.container {
+  display: block;
+}
+
+.row {
+  // display: block;
 }
 
 section {
@@ -132,10 +162,7 @@ section {
     }
   }
 
-  .page-container {
-    margin: 0 80px;
-    width: auto;
-  }
+
 
   .banner-img {
     position: relative;
@@ -158,18 +185,33 @@ section {
   }
 }
 
+.currency{
+  position: absolute;
+  margin-top: 13px;
+  font-size: 18px;
+}
+
 input {
   border-radius: 5px;
   padding: 13px;
-  width: calc(100% - 28px) !important;
+  width: calc(100% - 26px) !important;
   border: 1px solid #ddd;
   font-size: 1rem;
   transition: all 0.25s;
 
   &:focus {
     outline: none;
-    border-radius: 5px 5px 0 0px;
+    // border-radius: 5px 5px 0 0px;
   }
+
+  &.err:focus {
+    border: 1px solid $peach !important;
+  }
+}
+
+p.error {
+  color: $peach;
+  font-size: 14px;
 }
 
 .form-group {
@@ -282,7 +324,7 @@ form {
       color: #222;
     }
 
-    > a,
+    >a,
     .each-img-card {
       height: -moz-fit-content;
       height: fit-content;
@@ -292,7 +334,7 @@ form {
       border-radius: 12px;
       box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 
-      > a {
+      >a {
         width: calc(240px);
         text-decoration: none;
       }
@@ -314,14 +356,15 @@ form {
   .react-carousel {
     .carousel-label button {
       text-transform: uppercase;
-      p{
-        // font-weight: 500;
-        font-size:13px;
+
+      p {
+        font-size: 13px;
       }
     }
   }
+
   .store-banner {
-    .grid.grid-1 > a figure.horizontal {
+    .grid.grid-1>a figure.horizontal {
       padding-bottom: 72vh;
     }
 
@@ -336,8 +379,9 @@ form {
 }
 
 .product-banner {
+
   .slider .each-img-card .img-slide.horizontal-md,
-  .slider > a .img-slide.horizontal-md {
+  .slider>a .img-slide.horizontal-md {
     padding-bottom: 128% !important;
   }
 }
@@ -351,11 +395,11 @@ form {
     display: none;
   }
 
-  input:checked + label .selected {
+  input:checked+label .selected {
     display: block;
   }
 
-  input:checked + label .not-selected {
+  input:checked+label .not-selected {
     display: none;
   }
 
@@ -391,8 +435,9 @@ form {
 // Responsiveness
 @media only screen and (max-width: 927px) {
   #slider3 {
-    .slider > a > a,
-    .slider .each-img-card > a {
+
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(28vw - 20px);
     }
   }
@@ -400,15 +445,17 @@ form {
 
 @media only screen and (max-width: 768px) {
   #slider3 {
-    .slider > a > a,
-    .slider .each-img-card > a {
+
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(33vw - 20px);
     }
   }
 
   #slider1 {
-    .slider > a > a,
-    .slider .each-img-card > a {
+
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(200px);
       text-decoration: none;
     }
@@ -447,13 +494,14 @@ form {
   }
 
   #slider3 {
-    .slider > a,
+
+    .slider>a,
     .slider .each-img-card {
       margin: 0 10px 0 0;
     }
 
-    .slider > a > a,
-    .slider .each-img-card > a {
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(45vw - 20px);
     }
   }
@@ -461,8 +509,9 @@ form {
 
 @media only screen and (max-width: 480px) {
   #slider3 {
-    .slider > a > a,
-    .slider .each-img-card > a {
+
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(55vw - 0px);
     }
   }
@@ -492,8 +541,8 @@ form {
       padding: 11px 14px;
     }
 
-    .slider > a > a,
-    .slider .each-img-card > a {
+    .slider>a>a,
+    .slider .each-img-card>a {
       width: calc(130px);
       text-decoration: none;
     }

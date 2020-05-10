@@ -297,7 +297,6 @@ const Home: React.FC<{}> = props => {
       item.toLowerCase().match(regex) ? true : false
     );
     setItems(fetchData);
-    console.log(fetchData);
   };
 
   const SliderLabel: React.FC<any> = () => {

@@ -9,10 +9,11 @@ interface ISlider {
   id: string;
   margin?: number;
   isLink?: boolean;
+  url?: string;
 }
 
 const Slider: React.FC<any> = (
-  { images, id, margin = 15, isLink = true }: ISlider,
+  { images, id, margin = 15, isLink = true, url }: ISlider,
   ...props
 ) => {
   //   const [count, setCount] = useState(0);
@@ -61,8 +62,9 @@ const Slider: React.FC<any> = (
           if (count > 0) {
             // setCount(count - 1);
             count--;
-            container.style.transform = `translateX(-${(targetWidth + margin) *
-              count}px)`;
+            container.style.transform = `translateX(-${
+              (targetWidth + margin) * count
+            }px)`;
             nextBtn.style.display = "block";
             if (count === 0) {
               prevBtn.style.display = "none";
@@ -79,8 +81,9 @@ const Slider: React.FC<any> = (
               target[target.length - 1].offsetLeft - count * targetWidth
           ) {
             count++;
-            container.style.transform = `translateX(-${(targetWidth + margin) *
-              count}px)`;
+            container.style.transform = `translateX(-${
+              (targetWidth + margin) * count
+            }px)`;
             prevBtn.style.display = "block";
             if (
               getSliderWidth(container) >
@@ -120,7 +123,7 @@ const Slider: React.FC<any> = (
           {images.map((item, index) => (
             <div key={index} className="each-img-card">
               {isLink && (
-                <Link to={item.url || ""}>
+                <Link to={url || ""}>
                   <figure>
                     <div className="img-slide horizontal-md">
                       <img src={item.src} alt="stores" />

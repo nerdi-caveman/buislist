@@ -25,7 +25,7 @@ const App: React.FC = () => {
   return (
     <div className="default">
       <BrowserRouter>
-        {checkAuth(0) ? <UserHeader /> : <Header />}
+        {checkAuth(1) ? <UserHeader /> : <Header />}
         <Routes />
       </BrowserRouter>
     </div>

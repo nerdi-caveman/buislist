@@ -1,0 +1,11 @@
+.pop-up {
+    position: absolute;
+    z-index: 9999;
+
+    .container {
+        background: #fff;
+        box-shadow: 0 0 10px #dfdfdf;
+        padding: 15px 30px;
+        border-radius: 15px;
+    }
+}

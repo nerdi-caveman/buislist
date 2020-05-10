@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import badge from "../assets/verified-badge.png";
 import Icon from "@mdi/react";
 import { mdiHeart, mdiHeartOutline } from "@mdi/js";
 import Slider from "./slider";
-import {formatCurrency} from '../modules/price';
+import { formatCurrency } from "../modules/price";
+import { textToSlug } from "../utils/string";
 
 interface IProductGrid {
   product: any;
   grid: number;
+  id: string | number;
   addToFavourite: any;
 }
 
 const ProductGrid: React.FC<any> = ({
   product,
   grid = 6,
-  addToFavourite
+  addToFavourite,
+  id = 1,
 }: IProductGrid) => {
   const [productState, setProductState] = useState(product);
 
@@ -34,13 +35,13 @@ const ProductGrid: React.FC<any> = ({
           <div key={index}>
             <div className="favourite">
               <input
-                checked={item.favourite !== undefined ? item.favourite: false}
+                checked={item.favourite !== undefined ? item.favourite : false}
                 type="checkbox"
-                id={"profilefavourite" + index}
-                name={"profilefavourite" + index}
+                id={`profilefavourite${id}${index}`}
+                name={`profilefavourite${id}${index}`}
                 onChange={() => updateFavourite(item, index)}
               />
-              <label htmlFor={`profilefavourite${index}`}>
+              <label htmlFor={`profilefavourite${id}${index}`}>
                 <Icon
                   className="not-selected"
                   path={mdiHeartOutline}
@@ -57,18 +58,20 @@ const ProductGrid: React.FC<any> = ({
             </div>
             <div className="each-img-card">
               <div className="">
-                  <Slider
-                    id={"slider22"+index}
-                    images={item.carouselImages}
-                    margin={6}
-                  />
+                <Slider
+                  id={`slider22${id}${index}`}
+                  images={item.carouselImages}
+                  margin={6}
+                  url={`/product/${textToSlug("JBL Headphones")}/${id}`}
+                />
               </div>
               <div className="people-desc">
-                {item.premium && <div className="badge badge-sm badge-sm-back">Promoted</div>}
+                {item.premium && (
+                  <div className="badge badge-sm badge-sm-back">Promoted</div>
+                )}
                 <p className="label label-sm ">Phones, pcs & Gadgets </p>
-                <p className="desc">JBL Headphones
-                </p>
-                <p className="price">{formatCurrency("2300", 'NGN')}</p>
+                <p className="desc">JBL Headphones</p>
+                <p className="price">{formatCurrency("2300", "NGN")}</p>
               </div>
             </div>
           </div>

@@ -2,6 +2,9 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import NotFound from "./public/notfound";
 import Home from "./public/home";
+import PrivateHome from "./private/Home";
+import Product from "./public/product";
+import Category from "./public/category";
 
 const checkAuth = (val: number): boolean => {
   return val ? true : false;
@@ -17,7 +20,7 @@ const AuthRoute: React.FC<any> = ({
 }: IComponent) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       checkAuth(0) ? (
         <Component {...props} />
       ) : (
@@ -34,8 +37,8 @@ const AuthRouteRedirectTo: React.FC<any> = ({
 }) => (
   <Route
     {...rest}
-    render={props =>
-      checkAuth(0) ? <Component {...props} /> : <To {...props} />
+    render={(props) =>
+      checkAuth(1) ? <Component {...props} /> : <To {...props} />
     }
   />
 );
@@ -43,12 +46,14 @@ const AuthRouteRedirectTo: React.FC<any> = ({
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <AuthRouteRedirectTo exact path="/" component={Home} to={Home} />
+      <AuthRouteRedirectTo exact path="/" component={PrivateHome} to={Home} />
       <Route path="/login" render={() => <Home />} />
       <Route path="/signup" render={() => <Home />} />
       <Route path="/profile/:username" render={() => <Home />} />
+      <Route path="/category/:name" render={() => <Category />} />
       <Route path="/store" render={() => <Home />} />
       <Route path="/store/:name" render={() => <Home />} />
+      <Route path="/product/:name/:id" render={() => <Product />} />
 
       {/* Private routes */}
       <AuthRoute path="/settings" component={Home} />

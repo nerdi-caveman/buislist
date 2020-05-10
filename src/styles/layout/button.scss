@@ -4,7 +4,7 @@
   position: relative;
   outline: none;
   border-radius: 7px;
-  transition: transform .35s;
+  transition: transform, background .35s;
 
   &:hover {
     &:after {
@@ -51,10 +51,14 @@
     }
   }
 
-  &:active{
+  &:active {
     transform: scale(0.97);
     will-change: transform;
     transform-origin: center center;
+
+    &:after {
+      border: 1px solid transparent !important;
+    }
   }
 
   &:focus {
@@ -116,9 +120,25 @@
     }
   }
 
+  &.btn-dark {
+    background: lighten($black, 10);
+    // box-shadow: 2px 0 4px rgba($peach, .6);
+    border: 1px solid transparent;
+
+    &:hover {
+      background: darken($black, 5);
+    }
+  }
+
   &.btn-lg {
     padding: 12px 28px;
     font-size: 1rem;
+    color: white;
+  }
+
+  &.btn-sm {
+    padding: 9px 13px;
+    font-size: 0.9rem;
     color: white;
   }
 

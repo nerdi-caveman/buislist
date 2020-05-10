@@ -9,15 +9,17 @@ import { mdiMapMarker, mdiStar, mdiHeart, mdiHeartOutline } from "@mdi/js";
 interface IStoresGrid {
   stores: any;
   grid: number;
-  id:string;
+  id: string;
+  showDetails: boolean;
   addToFavourite: any;
 }
 
 const StoresGrid: React.FC<any> = ({
   stores,
   grid = 6,
-  id ='1',
-  addToFavourite
+  id = "1",
+  showDetails = true,
+  addToFavourite,
 }: IStoresGrid) => {
   const [storesState, setStoresState] = useState(stores);
 
@@ -32,13 +34,13 @@ const StoresGrid: React.FC<any> = ({
   //   };
   //   const [storesState, dispatch] = useReducer(reducer, stores);
 
-  const updateFavourite = (item:any ,index:number) => {
+  const updateFavourite = (item: any, index: number) => {
     const newStores = [...storesState];
     newStores[index]["favourite"] = !item.favourite;
     setStoresState(() => [...newStores]);
 
     addToFavourite(item, !item.favourite);
-  }
+  };
 
   return (
     <div className="store-banner">
@@ -47,11 +49,11 @@ const StoresGrid: React.FC<any> = ({
           <div key={index}>
             <div className="favourite">
               <input
-                checked={item.favourite !== undefined ? item.favourite: false}
+                checked={item.favourite !== undefined ? item.favourite : false}
                 type="checkbox"
-                id={"favourite" + index+id}
-                name={"favourite" + index+id}
-                onChange={()=>updateFavourite(item, index)}
+                id={"favourite" + index + id}
+                name={"favourite" + index + id}
+                onChange={() => updateFavourite(item, index)}
               />
               <label htmlFor={`favourite${index}${id}`}>
                 <Icon
@@ -75,7 +77,7 @@ const StoresGrid: React.FC<any> = ({
                   imgSrc={item.carouselImages}
                   interval={3000}
                   event="hover"
-                  id={index+id + 2}
+                  id={index + id + 2}
                 />
                 <figure className="store-details">
                   <div className="img">
@@ -87,7 +89,7 @@ const StoresGrid: React.FC<any> = ({
                 </figure>
               </div>
               <div className="store-desc">
-                {item.premium && <div className="badge badge-sm">Pro</div>}
+                {showDetails && item.premium && <div className="badge badge-sm">Pro</div>}
                 <p className="label label-sm ">
                   <Icon path={mdiMapMarker} size={0.55} color="#8b8b8b" />{" "}
                   {item.location}
@@ -95,11 +97,13 @@ const StoresGrid: React.FC<any> = ({
                 <p className="desc">
                   We build the best shoes for sports. Just do it
                 </p>
-                <p className="rating label label-md">
-                  4.32
-                  <Icon path={mdiStar} size={0.66} color="#8333b8" />
-                  <span className="review ">(204)</span>
-                </p>
+                {showDetails && (
+                  <p className="rating label label-md">
+                    4.32
+                    <Icon path={mdiStar} size={0.66} color="#8333b8" />
+                    <span className="review ">(204)</span>
+                  </p>
+                )}
               </div>
             </Link>
           </div>

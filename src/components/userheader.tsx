@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/components/header.scss";
 
 const UserHeader: React.FC<any> = () => {
   return (
     <header id="usr-header">
       <nav>
-        <div className="hdr-left">
-          <Link to="" id="logo"></Link>
-        </div>
+        <Link to="" id="logo"></Link>
         <ul id="main-nav">
-          <li>Be a store owner</li>
-          <li>Store</li>
+          <li>Stores</li>
           <li>Messages</li>
+          <li>Favourites</li>
           <li>
-            <i className="fa fa-">h</i>
+            <div id="usr-icon">
+              <div id="usr-img"></div>
+            </div>
             <ul id="usr-account"></ul>
           </li>
         </ul>
