@@ -226,9 +226,9 @@ const Category: React.FC<any> = ({ match, location }) => {
           <div className="row options">
             <button
               onClick={() => {
-                setSearchParams({ type: "recently-viewed" },location.search);
+                setSearchParams({ type: "recently-viewed" }, location.search);
               }}
-              className="tags price"
+              className="tags active"
             >
               Recently added
             </button>
@@ -241,7 +241,9 @@ const Category: React.FC<any> = ({ match, location }) => {
               Price
             </button>
             <button
-              onClick={() => {
+              id="filter"
+              onClick={(e: any) => {
+                e.target.classList.add("active");
                 const html: any = document.querySelector("html");
                 html.style.overflowY = "hidden";
 
