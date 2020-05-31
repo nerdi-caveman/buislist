@@ -16,11 +16,6 @@ const Slider: React.FC<any> = (
   { images, id, margin = 15, isLink = true, url }: ISlider,
   ...props
 ) => {
-  //   const [count, setCount] = useState(0);
-
-  // const [targetWidth, SetTargetWidth] = useState(0);
-  // const [targetLen, SetTargetLen] = useState(0);
-
   useEffect(() => {
     let count: number = 0;
     let targetWidth: any = null;
@@ -60,7 +55,6 @@ const Slider: React.FC<any> = (
       if (prevBtn !== undefined) {
         prevBtn.addEventListener("click", () => {
           if (count > 0) {
-            // setCount(count - 1);
             count--;
             container.style.transform = `translateX(-${
               (targetWidth + margin) * count
@@ -134,7 +128,7 @@ const Slider: React.FC<any> = (
                 </Link>
               )}
               {!isLink && (
-                <div>
+                <div className="cover">
                   <figure>
                     <div className="img-slide horizontal-md">
                       <img src={item.src} alt="stores" />

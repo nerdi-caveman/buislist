@@ -13,6 +13,7 @@ import {
   mdiFoodAppleOutline,
   mdiHairDryerOutline,
   mdiChevronRight,
+  mdiBookOpenOutline,
 } from "@mdi/js";
 import { Link } from "react-router-dom";
 import Storebanner from "../../../assets/barts-store-signage-1884573.jpg";
@@ -28,6 +29,7 @@ import "../../../styles/pages/home.scss";
 import Head from "../../../components/head";
 import StoresGrid from "../../../components/stores-grid";
 import { textToSlug } from "../../../utils/string";
+import { productsData } from "../../../utils/data";
 
 let storesImages: any = [
   {
@@ -306,8 +308,12 @@ const Categories: React.FC<any> = () => {
       label: "Health & Beauty",
     },
     {
+      path: mdiBookOpenOutline,
+      label: "Stationaries",
+    },
+    {
       path: mdiSofa,
-      label: "Furniture",
+      label: "Furnitures",
     },
     {
       path: mdiFoodAppleOutline,
@@ -359,7 +365,7 @@ const HomeWrapper: React.FC<any> = () => {
             <h2>Products you might like</h2>
           </div>
           <ProductGrid
-            product={storesImages}
+            product={productsData}
             addToFavourite={addStoreFavourite}
           />
         </section>
@@ -384,7 +390,7 @@ const HomeWrapper: React.FC<any> = () => {
           </div>
           <ProductGrid
             id="2"
-            product={trendingProducts}
+            product={productsData}
             addToFavourite={addStoreFavourite}
           />
           <div className="see-all">
@@ -400,7 +406,7 @@ const HomeWrapper: React.FC<any> = () => {
           </div>
           <ProductGrid
             id="3"
-            product={storesImages}
+            product={productsData}
             addToFavourite={addStoreFavourite}
           />
         </section>

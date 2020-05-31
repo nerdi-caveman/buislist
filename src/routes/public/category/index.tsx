@@ -96,9 +96,6 @@ const Price: React.FC<any> = ({
           <div className="row">
             <div className="form-control">
               <label>From</label>
-              {/* <p aria-label="currency" className="currency">
-                N
-              </p> */}
               <input
                 type="text"
                 name="from"

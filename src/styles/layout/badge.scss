@@ -15,4 +15,15 @@
         background: $wine;
         color: #fff !important;
     }
+
+    &.badge-md {
+        font-size: 15px;
+        font-weight: 400;
+        // letter-spacing: 0.6px;
+        padding: 1px 8px;
+    }
+    &.badge-sm-back {
+        background: $wine;
+        color: #fff !important;
+    }
 }

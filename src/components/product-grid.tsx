@@ -69,9 +69,9 @@ const ProductGrid: React.FC<any> = ({
                 {item.premium && (
                   <div className="badge badge-sm badge-sm-back">Promoted</div>
                 )}
-                <p className="label label-sm ">Phones, pcs & Gadgets </p>
-                <p className="desc">JBL Headphones</p>
-                <p className="price">{formatCurrency("2300", "NGN")}</p>
+                <p className="label label-sm ">{item.store.category}</p>
+                <p className="desc">{item.name}</p>
+                <p className="price">{formatCurrency(item.price, "NGN")}</p>
               </div>
             </div>
           </div>
