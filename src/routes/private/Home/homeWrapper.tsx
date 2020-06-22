@@ -31,73 +31,73 @@ import StoresGrid from "../../../components/stores-grid";
 import { textToSlug } from "../../../utils/string";
 import { productsData } from "../../../utils/data";
 
-let storesImages: any = [
-  {
-    id: 1,
-    carouselImages: [{ src: media }, { src: tech }],
-    premium: true,
-    location: "Ibadan, Nigeria",
-  },
-  {
-    id: 2,
-    carouselImages: [
-      { src: Storebanner },
-      { src: media },
-      { src: carouselimg1 },
-      { src: photography },
-    ],
-    premium: false,
-    location: "Lagos, Nigeria",
-  },
-  {
-    id: 3,
-    carouselImages: [
-      { src: carouselimg1 },
-      { src: Storebanner },
-      { src: Productbanner },
-      { src: tech },
-      { src: Accessoriesbanner },
-    ],
-    premium: false,
-    location: "Anambra, Nigeria",
-  },
-  {
-    id: 4,
-    carouselImages: [
-      { src: Productbanner },
-      { src: carouselimg1 },
-      { src: tech },
-      { src: ab },
-      { src: photography },
-    ],
-    premium: true,
-    location: "Abuja, Nigeria",
-  },
-  {
-    id: 5,
-    carouselImages: [
-      { src: tech },
-      { src: Productbanner },
-      { src: media },
-      { src: carouselimg1 },
-      { src: Accessoriesbanner },
-    ],
-    premium: true,
-    location: "Ibadan, Nigeria",
-  },
-  {
-    id: 6,
-    carouselImages: [
-      { src: Storebanner },
-      { src: media },
-      { src: carouselimg1 },
-      { src: photography },
-      { src: tech },
-    ],
-    premium: false,
-    location: "Port Harcout, Nigeria",
-  },
-];
+// let storesImages: any = [
+//   {
+//     id: 1,
+//     carouselImages: [{ src: media }, { src: tech }],
+//     premium: true,
+//     location: "Ibadan, Nigeria",
+//   },
+//   {
+//     id: 2,
+//     carouselImages: [
+//       { src: Storebanner },
+//       { src: media },
+//       { src: carouselimg1 },
+//       { src: photography },
+//     ],
+//     premium: false,
+//     location: "Lagos, Nigeria",
+//   },
+//   {
+//     id: 3,
+//     carouselImages: [
+//       { src: carouselimg1 },
+//       { src: Storebanner },
+//       { src: Productbanner },
+//       { src: tech },
+//       { src: Accessoriesbanner },
+//     ],
+//     premium: false,
+//     location: "Anambra, Nigeria",
+//   },
+//   {
+//     id: 4,
+//     carouselImages: [
+//       { src: Productbanner },
+//       { src: carouselimg1 },
+//       { src: tech },
+//       { src: ab },
+//       { src: photography },
+//     ],
+//     premium: true,
+//     location: "Abuja, Nigeria",
+//   },
+//   {
+//     id: 5,
+//     carouselImages: [
+//       { src: tech },
+//       { src: Productbanner },
+//       { src: media },
+//       { src: carouselimg1 },
+//       { src: Accessoriesbanner },
+//     ],
+//     premium: true,
+//     location: "Ibadan, Nigeria",
+//   },
+//   {
+//     id: 6,
+//     carouselImages: [
+//       { src: Storebanner },
+//       { src: media },
+//       { src: carouselimg1 },
+//       { src: photography },
+//       { src: tech },
+//     ],
+//     premium: false,
+//     location: "Port Harcout, Nigeria",
+//   },
+// ];
 
 let featuredStores: any = [
   {

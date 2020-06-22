@@ -1,26 +1,31 @@
-import React, { useState } from "react";
-import Head from "../../../components/head";
-import { productsData } from "../../../utils/data";
-import Slider from "../../../components/slider";
-import "../../../styles/pages/product.scss";
-import { formatCurrency } from "../../../modules/price";
-import ReactRadioBtn from "../../../components/react-radiobtn";
-import { toCapital } from "../../../utils/string";
-import ProductGrid from "../../../components/product-grid";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import Head from "../../../components/head"
+import { productsData } from "../../../utils/data"
+import Slider from "../../../components/slider"
+import "../../../styles/pages/product.scss"
+import { formatCurrency } from "../../../modules/price"
+import ReactRadioBtn from "../../../components/react-radiobtn"
+import { toCapital, textToSlug } from "../../../utils/string"
+import ProductGrid from "../../../components/product-grid"
+import { Link } from "react-router-dom"
 
-const ProductWrapper: React.FC<any> = () => {
+interface IProductWrapper {
+  product: any
+}
+
+const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
   const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value;
-  };
-  const data = productsData[3];
+    item.favourite = !value
+  }
+  const [data] = useState(product)
+
   const [price] = useState(
-    parseInt(data.price) + parseInt(data.delivery.price)
-  );
-  const location = data.location;
+    parseInt(data?.price) + parseInt(data?.delivery.price)
+  )
+  const location = data?.location
   const available: boolean =
-    data.delivery.available.includes(location.city) ||
-    data.delivery.available.includes("any");
+    data?.delivery.available.includes(location.city) ||
+    data?.delivery.available.includes("any")
 
   return (
     <div id="product" className="main-container">
@@ -47,7 +52,7 @@ const ProductWrapper: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-logo">
-                <Link to={`/stores/${data.store.name}`}>
+                <Link to={`/store/${textToSlug(data.store.name)}`}>
                   <div className="rounded-img img-md">
                     <img src={data.store.img} alt="store logo" />
                   </div>
@@ -68,7 +73,7 @@ const ProductWrapper: React.FC<any> = () => {
               <h3>Specifications</h3>
               <ul>
                 {data.specifications.map((item: any, index: number) => (
-                  <li>
+                  <li key={index}>
                     <h4>{item.name}: </h4>
                     <p>{item.value}</p>
                   </li>
@@ -91,7 +96,7 @@ const ProductWrapper: React.FC<any> = () => {
                     <p className="label label-md ">Size</p>
                     <ReactRadioBtn
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="size"
                       type="b"
@@ -102,7 +107,7 @@ const ProductWrapper: React.FC<any> = () => {
                     <p className="label label-md ">Color</p>
                     <ReactRadioBtn
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="color"
                       items={["black", "Rose", "Gold", "Silver", "Green"]}
@@ -112,7 +117,7 @@ const ProductWrapper: React.FC<any> = () => {
                     <p className="label label-md ">Delivery options</p>
                     <ReactRadioBtn
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="delivery-options"
                       type="c"
@@ -180,6 +185,6 @@ const ProductWrapper: React.FC<any> = () => {
         </div>
       </div>
     </div>
-  );
-};
-export default ProductWrapper;
+  )
+}
+export default ProductWrapper

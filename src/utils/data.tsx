@@ -94,7 +94,7 @@ export const productsData: any = [
       { name: "Brand", value: "Apple" },
       { name: "Model", value: "Iphone 11" },
       { name: "RAM", value: "2 GB" },
-      { name: "Internmal Storage", value: "128 GB" },
+      { name: "Intern   mal Storage", value: "128 GB" },
       { name: "OS", value: "IOS 13" },
     ],
   },
@@ -114,7 +114,7 @@ export const productsData: any = [
     description: "lorem Ipsum",
     delivery: { price: 500, available: ["ibadan", "lagos", "abuja"] },
     store: {
-      name: "ini stores",
+      name: "Apple",
       category: "Phones, pcs & Gadgets",
       img: profileimg,
       verified: true,

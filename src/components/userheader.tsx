@@ -1,15 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../styles/components/header.scss";
+import React from "react"
+import { Link } from "react-router-dom"
+import "../styles/components/header.scss"
 
-const UserHeader: React.FC<any> = () => {
+interface IUserHeader {
+  position?: "fixed" | "relative"
+}
+
+const UserHeader: React.FC<IUserHeader> = ({ position = "fixed" }) => {
   return (
-    <header id="usr-header">
+    <header id="usr-header" style={{ position }}>
       <nav>
         <Link to="" id="logo"></Link>
         <ul id="main-nav">
           <li>Stores</li>
-          <li>Messages</li>
+          <li>Inbox</li>
           <li>Favourites</li>
           <li>
             <div id="usr-icon">
@@ -20,6 +24,6 @@ const UserHeader: React.FC<any> = () => {
         </ul>
       </nav>
     </header>
-  );
-};
-export default UserHeader;
+  )
+}
+export default UserHeader

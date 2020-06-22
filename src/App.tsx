@@ -1,35 +1,30 @@
-import React, { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
-import "./App.scss";
-import Header from "./components/header";
-import Routes from "./routes/";
-import UserHeader from "./components/userheader";
-
-const checkAuth = (val: number): boolean => {
-  return val ? true : false;
-};
+import React, { useEffect } from "react"
+import { BrowserRouter } from "react-router-dom"
+import "./App.scss"
+import Routes from "./routes/"
+import ScrollToTop from "./components/scroll-to-top"
 
 const disableDoubleTapHighlight = () => {
-  document.addEventListener("mousedown", e => {
+  document.addEventListener("mousedown", (e) => {
     if (e.detail > 1) {
-      e.preventDefault();
+      e.preventDefault()
     }
-  });
-};
+  })
+}
 
 const App: React.FC = () => {
   useEffect(() => {
-    disableDoubleTapHighlight();
-  });
+    disableDoubleTapHighlight()
+  })
 
   return (
     <div className="default">
       <BrowserRouter>
-        {checkAuth(1) ? <UserHeader /> : <Header />}
+      <ScrollToTop />
         <Routes />
       </BrowserRouter>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
