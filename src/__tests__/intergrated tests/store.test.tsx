@@ -44,4 +44,14 @@ describe("Stores Unit Tests", () => {
       )
     ).toBeTruthy()
   })
+
+  it("should have best-sellers-section, collection-slider and new-section", () => {
+    expect(wrapper.find("#best-sellers-section")).toHaveLength(1)
+    expect(wrapper.find("#new-section")).toHaveLength(1)
+    expect(wrapper.find("#collection-section")).toHaveLength(1)
+  })
+
+  it("should have a footer", () => {
+    expect(wrapper.find("footer")).toHaveLength(1)
+  })
 })

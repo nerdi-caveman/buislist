@@ -40,29 +40,31 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({ storeData }) => {
     <div id="store" className="main-container">
       <Head title={`${name}`} />
       <div className="page-container">
-        <section id="" className="mini-section ">
+        <section id="new-section" className="mini-section ">
           <div className="row space-between section-head">
             <h2>New</h2>
           </div>
           <ProductGrid
+          id ="new-products"
             grid={4}
             product={collections[2].products}
             addToFavourite={addStoreFavourite}
           />
         </section>
-        <section id="collection-slider" className="mini-section ">
+        <section id="collection-section" className="mini-section ">
           <div className="row space-between section-head">
             <h2>Collections</h2>
           </div>
 
           <Slider images={collectionSlider} id="slider3" margin={25} url="ff" />
         </section>
-        <section id="" className="mini-section ">
+        <section id="best-sellers-section" className="mini-section ">
           <div className="row space-between section-head">
             <h2>Best Sellers</h2>
           </div>
 
           <ProductGrid
+            id="sellers"
             grid={4}
             product={bestSellers}
             addToFavourite={addStoreFavourite}

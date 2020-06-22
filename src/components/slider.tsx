@@ -22,11 +22,14 @@ const Slider: React.FC<any> = (
     let targetWidth: any = null
     let targetLen: any = null
     const container: any = document.querySelector(`#${id} .slider`)
-    const target: any = container.querySelectorAll(".each-img-card")
-    const prevBtn: any = document.querySelector(`#${id}prev`)
-    const nextBtn: any = document.querySelector(`#${id}next`)
-    targetWidth = target[0].offsetWidth
-    targetLen = target.length - 1
+    if (container) {
+      const target: any = container?.querySelectorAll(".each-img-card")
+      const prevBtn: any = document.querySelector(`#${id}prev`)
+      const nextBtn: any = document.querySelector(`#${id}next`)
+      targetWidth = target[0].offsetWidth
+      targetLen = target.length - 1
+
+      
 
     window.addEventListener("resize", () => {
       count = 0
@@ -99,6 +102,7 @@ const Slider: React.FC<any> = (
     }
 
     onClickHandler(container, target)
+    }
   }, [id, margin])
 
   return (
