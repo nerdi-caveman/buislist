@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16"
 import { MemoryRouter as Router } from "react-router-dom"
 import Store from "../../routes/public/store"
 import Icon from "@mdi/react"
-import { mdiHeart, mdiHeartOutline } from "@mdi/js"
+import { mdiHeartOutline } from "@mdi/js"
 
 Enzyme.configure({ adapter: new Adapter() })
 
