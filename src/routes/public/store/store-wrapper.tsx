@@ -1,4 +1,4 @@
-import React, { FormEvent, FormEventHandler } from "react"
+import React, { FormEventHandler } from "react"
 import Head from "../../../components/head"
 import "../../../styles/pages/store.scss"
 import ProductGrid from "../../../components/product-grid"
@@ -8,7 +8,6 @@ import {
   mdiHeartOutline,
   mdiHeart,
   mdiTwitter,
-  mdiMail,
   mdiFacebook,
   mdiInstagram,
   mdiWhatsapp,
