@@ -17,6 +17,18 @@ interface IStore {
 const Store: React.FC<IStore> = ({ match }) => {
   const data = {
     name: slugToText(match.params.name),
+    phone: "1938",
+    location: "Ibadan",
+    category: "Electronics",
+    email: "inioluwa4is@gmail.com",
+    whatsapp: "https://whatsapp.com/sjfeJxrDk2",
+    facebook: "https://facebook.com/sjfeJxrDk2",
+    instagram: "https://instagram.com/sjfeJxrDk2",
+    twitter: "https://twitter.com/sjfeJxrDk2",
+    premium: true,
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, ipsam repudiandae inventore officia doloremque tempore minus repellat vitae nisi similique perferendis deserunt in non eaque. Autem quas nulla odit quidem!",
+    favourite: true,
     collections: [
       { name: "New and Featured", products: productsData.slice(3, 6) },
       { name: "Mens", products: productsData.slice(4, 7) },
@@ -26,7 +38,7 @@ const Store: React.FC<IStore> = ({ match }) => {
     ],
     bestSellers: productsData.slice(0, 3),
   }
-  const [storeData] = useState(data)
+  const [storeData, setStoreData] = useState(data)
   return (
     <>
       {checkAuth(1) ? <UserHeader position="relative" /> : <Header />}
@@ -34,12 +46,17 @@ const Store: React.FC<IStore> = ({ match }) => {
         name={storeData.name}
         logo={
           <>
-            <Icon path={mdiApple} size={1} color="#000000" /> {storeData.name}
+            <Icon path={mdiApple} size={1} color="#000000" />
           </>
         }
         navigation={storeData.collections}
       />
-      <StoreWrapper storeData={storeData} />
+      <StoreWrapper
+        storeData={storeData}
+        setToFavourite={(value: boolean) => {
+          setStoreData({ ...storeData, favourite: value })
+        }}
+      />
     </>
   )
 }

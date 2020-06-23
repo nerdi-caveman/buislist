@@ -114,7 +114,7 @@ export const productsData: any = [
     description: "lorem Ipsum",
     delivery: { price: 500, available: ["ibadan", "lagos", "abuja"] },
     store: {
-      name: "Apple",
+      name: "Ini stores inc",
       category: "Phones, pcs & Gadgets",
       img: profileimg,
       verified: true,

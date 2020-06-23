@@ -51,7 +51,15 @@ describe("Stores Unit Tests", () => {
     expect(wrapper.find("#collection-section")).toHaveLength(1)
   })
 
-  it("should have a footer", () => {
+  it("should have a footer with a black background", () => {
     expect(wrapper.find("footer")).toHaveLength(1)
+    expect(
+      getComputedStyle(wrapper.find("footer").getDOMNode()).getPropertyValue(
+        "background"
+      )
+    ).toStrictEqual("rgb(0, 0, 0)")
+    expect(
+      wrapper.find("footer").props("style").style["background"]
+    ).toStrictEqual("#000")
   })
 })

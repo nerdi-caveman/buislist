@@ -3,6 +3,9 @@
   cursor: pointer;
   position: relative;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 7px;
   transition: transform, background .35s;
 
@@ -121,12 +124,26 @@
   }
 
   &.btn-dark {
-    background: lighten($black, 10);
+    background: lighten($black, 5);
     // box-shadow: 2px 0 4px rgba($peach, .6);
     border: 1px solid transparent;
 
     &:hover {
       background: darken($black, 5);
+    }
+  }
+
+  &.btn-default {
+    background: $white;
+    border: 1px solid transparent;
+    color: #000 !important;
+
+    &:hover {
+      background: darken($white, 2);
+    }
+
+    &:after {
+      border: none;
     }
   }
 
@@ -158,6 +175,12 @@
     padding: 9px 13px;
     font-size: 0.9rem;
     color: white;
+
+    &.with-left-icon {
+      svg {
+        margin-right: 7px;
+      }
+    }
   }
 
   &.btn-md {

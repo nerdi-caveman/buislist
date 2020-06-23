@@ -45,14 +45,14 @@ const ProductGrid: React.FC<any> = ({
                 <Icon
                   className="not-selected"
                   path={mdiHeartOutline}
-                  size={0.9}
-                  color="#444444"
+                  size={0.8}
+                  color="#222222"
                 />
                 <Icon
                   className="selected"
                   path={mdiHeart}
-                  size={0.9}
-                  color="#444444"
+                  size={0.8}
+                  color="#222222"
                 />
               </label>
             </div>
