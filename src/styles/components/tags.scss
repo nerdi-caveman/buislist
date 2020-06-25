@@ -7,15 +7,15 @@
     border-radius: 20px;
     transition: all .25s;
     margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 14px;
     position: relative;
 
     &::before {
         position: absolute;
         content: "";
-        left: 50%;
-        top: 50%;
-        transform: translate(-50.5%, -52%);
         margin: auto;
         border: 2px solid transparent;
         width: calc(100% + 8px);

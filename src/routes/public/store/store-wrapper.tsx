@@ -108,7 +108,7 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
     return {
       src: item.products[0].carouselImages[0].src,
       caption: item.name,
-      url: `/store/${textToSlug(name)}/collections/${textToSlug(item.name)}`,
+      url: `/store/${textToSlug(name)}/collection/${textToSlug(item.name)}`,
     }
   })
   const addToFavourite: FormEventHandler<HTMLButtonElement> = (): void => {
@@ -171,7 +171,7 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
             <h2>Collections</h2>
           </div>
 
-          <Slider images={collectionSlider} id="slider3" margin={25} url="ff" />
+          <Slider images={collectionSlider} id="slider3" margin={25} />
         </section>
         <section id="best-sellers-section" className="mini-section ">
           <div className="row space-between section-head">

@@ -1,15 +1,30 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import {
+  Link,
+  NavLink,
+  withRouter,
+  RouteComponentProps,
+} from "react-router-dom"
 import "../styles/components/header.scss"
 import { textToSlug } from "../utils/string"
 
-interface IStoreHeader {
+interface IStoreHeader extends RouteComponentProps {
   logo?: React.ReactElement
   name: string
   navigation: any[]
+  match: any
 }
 
-const StoreHeader: React.FC<IStoreHeader> = ({ name, logo, navigation }) => {
+const StoreHeader: React.FC<IStoreHeader> = ({
+  name,
+  logo,
+  navigation,
+  match,
+}) => {
+  const {
+    params: { collectionName },
+  } = match
+
   return (
     <header id="store-header">
       <nav>
@@ -19,13 +34,15 @@ const StoreHeader: React.FC<IStoreHeader> = ({ name, logo, navigation }) => {
         <ul id="main-nav">
           {navigation.map((link: any, index: number) => (
             <li key={index}>
-              <Link
+              <NavLink
+                isActive={() => textToSlug(link.name) === collectionName}
+                activeClassName="active"
                 to={`/store/${textToSlug(name)}/collection/${textToSlug(
                   link.name
                 )}`}
               >
                 {link.name}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -33,4 +50,4 @@ const StoreHeader: React.FC<IStoreHeader> = ({ name, logo, navigation }) => {
     </header>
   )
 }
-export default StoreHeader
+export default withRouter(StoreHeader)

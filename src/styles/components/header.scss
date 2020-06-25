@@ -19,6 +19,29 @@
             a {
                 align-items: center;
                 display: flex;
+                position: relative;
+
+                &::after {
+                    background: transparent;
+                    content: "";
+                    position: absolute;
+                    bottom: -1px;
+                    transition: background .25s ease;
+                    height: 1px;
+                    width: 100%;
+                }
+
+                &:hover {
+                    &::after {
+                        background: #000000;
+                    }
+                }
+
+                &.active {
+                    &::after {
+                        background: #000000;
+                    }
+                }
             }
 
             #usr-icon {

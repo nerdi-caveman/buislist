@@ -1,21 +1,27 @@
 import React from "react"
 import "./style.scss"
 
-interface IReactRadioBtn {
+interface IReactCheckBtn {
   onSelect: Function
   items: any
   id: string
-  defaultChecked?: number
+  defaultChecked?: number | string
   type?: string
+  htmlType?: string
 }
 
-const ReactRadioBtn: React.FC<IReactRadioBtn> = ({
+const ReactCheckBtn: React.FC<IReactCheckBtn> = ({
   onSelect,
   items,
-  defaultChecked,
+  defaultChecked = 1,
   id,
+  htmlType = "radio",
   type = "b",
 }) => {
+  const supportedHtmlTypes: string[] = ["checkbox", "radio"]
+  if (!supportedHtmlTypes.includes(htmlType)) {
+    return <></>
+  }
   if (type === "c") {
     return (
       <>
@@ -24,17 +30,15 @@ const ReactRadioBtn: React.FC<IReactRadioBtn> = ({
             <input
               name={id}
               id={id + index}
-              type={"radio"}
-              defaultChecked={index === defaultChecked}
+              type={htmlType || "radio"}
+              defaultChecked={index === 0}
               value={item.value}
-              onClick={(e: any) => {
+              onChange={(e: any) => {
                 onSelect(e.target.value)
               }}
             />
             <label htmlFor={id + index}></label>
-            <label className="label" htmlFor={id + index}>
-              {item.label}
-            </label>
+            <p>{item.label}</p>
           </div>
         ))}
       </>
@@ -47,8 +51,8 @@ const ReactRadioBtn: React.FC<IReactRadioBtn> = ({
           <input
             name={id}
             id={id + index}
-            type={"radio"}
-            defaultChecked={index === defaultChecked}
+            type={htmlType || "radio"}
+            defaultChecked={index === 0}
             value={item}
             onChange={(e: any) => onSelect(e.target.value)}
           />
@@ -60,4 +64,4 @@ const ReactRadioBtn: React.FC<IReactRadioBtn> = ({
     </>
   )
 }
-export default ReactRadioBtn
+export default ReactCheckBtn

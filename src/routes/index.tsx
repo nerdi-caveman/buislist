@@ -7,6 +7,7 @@ import Product from "./public/product"
 import Category from "./public/category"
 import Stores from "./public/stores"
 import Store from "./public/store"
+import StoreCollection from "./public/store-collection"
 
 const checkAuth = (val: number): boolean => {
   return val ? true : false
@@ -55,6 +56,7 @@ const Routes: React.FC = () => {
       <Route path="/category/:name" render={() => <Category />} />
       <Route path="/stores" render={() => <Stores />} />
       <Route path="/product/:name/:id" render={() => <Product />} />
+      <Route path="/store/:name/collection/:collectionName" render={() => <StoreCollection />} />
       <Route path="/store/:name" render={() => <Store />} />
 
       {/* Private routes */}

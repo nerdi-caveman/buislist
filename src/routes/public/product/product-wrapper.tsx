@@ -95,6 +95,7 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
                   <div className="section">
                     <p className="label label-md ">Size</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
                         console.log(value)
                       }}
@@ -106,6 +107,7 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
                   <div className="section">
                     <p className="label label-md ">Color</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
                         console.log(value)
                       }}
@@ -116,6 +118,7 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
                   <div className="section">
                     <p className="label label-md ">Delivery options</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
                         console.log(value)
                       }}

@@ -2,16 +2,6 @@ import React, { useState, useRef, useEffect, Fragment } from "react"
 import Head from "../../../components/head"
 import { withRouter } from "react-router-dom"
 import { slugToText, toCapital } from "../../../utils/string"
-import Cars from "./cars"
-import PhoneTablets from "./phones-tablets"
-import Supermarket from "./supermarket"
-import Electronics from "./electronics"
-import Fashion from "./fashion"
-import Furniture from "./furniture"
-import Gaming from "./gaming"
-import HealthBeauty from "./health-beauty"
-import HomeOffice from "./home-office"
-import RealEstate from "./real-estate"
 import "../../../styles/pages/category.scss"
 import { getSearchParams, setSearchParams, checkAuth } from "../../../utils"
 import { formatCurrency, currencyToNumber } from "../../../modules/price"
@@ -20,32 +10,81 @@ import ProductGrid from "../../../components/product-grid"
 import { productsData } from "../../../utils/data"
 import UserHeader from "../../../components/userheader"
 import Header from "../../../components/header"
+import ReactRadioBtn from "../../../components/react-radiobtn"
 
-const Filter: React.FC<any> = ({ page }) => {
-  switch (page.toLowerCase()) {
-    case "cars":
-      return <Cars />
-    case "electronics":
-      return <Electronics />
-    case "fashion":
-      return <Fashion />
-    case "furniture":
-      return <Furniture />
-    case "gaming":
-      return <Gaming />
-    case "health & beauty":
-      return <HealthBeauty />
-    case "home & office":
-      return <HomeOffice />
-    case "phones & tablets":
-      return <PhoneTablets />
-    case "real estate":
-      return <RealEstate />
-    case "supermarket":
-      return <Supermarket />
-    default:
-      return <>Not Found</>
+interface IFilter {
+  options: any[]
+  location: any
+  getData: Function
+}
+
+/**
+ * Determine what options to show depending on data recieved and
+ * return the respective options to parent component on button
+ */
+
+const Filter: React.FC<IFilter> = ({ location, options, getData }) => {
+  const searchParams: any = getSearchParams(location.search)
+  const obj = options.map((item: any, idx: number) => ({
+    name: item.label,
+    value: searchParams[item.label.toLowerCase()] || "", //set defaultValue from searchParams
+  }))
+  const [selectedOptions, setSelectedOptions] = useState(obj)
+
+  const addToSelectedOptions: Function = (value: string, idx: number): void => {
+    const optionsCopy = selectedOptions
+    optionsCopy[idx].value = value
+    setSelectedOptions([...optionsCopy])
   }
+
+  const submit = (): void => {
+    getData(selectedOptions)
+  }
+  return (
+    <>
+      <div className="container section-container" id="filter-container">
+        {options.map((option: any, idx: number) => {
+          let defaultChecked: any
+
+          // find the default value from the search params and assign its index as defaultChecked
+          if (searchParams[option.label.toLowerCase()]) {
+            const defaultValue: string =
+              searchParams[option.label.toLowerCase()]
+
+            for (let i = 0; i < option.values.length; i++) {
+              if (
+                option.values[i].toLowerCase() === defaultValue.toLowerCase()
+              ) {
+                defaultChecked = i
+                break
+              }
+            }
+          }
+
+          return (
+            <div key={idx} className="container section">
+              <h3 className="section-header">{option.label}</h3>
+              <div className="form-control">
+                <ReactRadioBtn
+                  onSelect={(value: string) => {
+                    addToSelectedOptions(value, idx)
+                    submit()
+                  }}
+                  id={`${option.label}${idx}`}
+                  type="c"
+                  defaultChecked={defaultChecked}
+                  items={option.values.map((item: any) => ({
+                    label: item,
+                    value: item,
+                  }))}
+                />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
 }
 
 const Price: React.FC<any> = ({
@@ -89,7 +128,7 @@ const Price: React.FC<any> = ({
       document.removeEventListener("click", onFocusInput)
       current = false
     }
-  })
+  }, [])
 
   return (
     <div className="pop-up" id="price">
@@ -169,9 +208,44 @@ const Price: React.FC<any> = ({
 const Category: React.FC<any> = ({ match, location }) => {
   const [showPrice, setShowPrice] = useState(false)
   const [showFilter, setShowFilter] = useState(false)
+  const [categorySearchParams, setCategorySearchParams] = useState([])
   const refs: any = useRef()
   const page: string = toCapital(slugToText(match.params.name))
   const searchParams: any = getSearchParams(location.search)
+
+  const filters: any = [
+    {
+      label: "Brand",
+      type: "list",
+      values: ["Toyota", "Honda", "Hyundai", "Jeep"],
+    },
+    {
+      label: "Transmission",
+      type: "list",
+      values: ["Automatic", "Manual"],
+    },
+    {
+      label: "Condition",
+      type: "list",
+      values: ["Brand New", "Nigerian Used", "Foreign Used"],
+    },
+  ]
+
+  const filterInSearchParams: Function = (
+    filter: any[],
+    params: any
+  ): boolean => {
+    for (let i = 0; i < filter.length; i++) {
+      if (
+        params[filter[i].label.toLowerCase()] ||
+        params[toCapital(filter[i].label)]
+      ) {
+        return true
+      }
+    }
+    return false
+  }
+
   // remove price focus events and styles
   useEffect(() => {
     let current: boolean = true
@@ -204,10 +278,19 @@ const Category: React.FC<any> = ({ match, location }) => {
       document.removeEventListener("click", onFocusInput)
       current = false
     }
-  })
+  }, [])
 
   const addStoreFavourite = (item: any, value: boolean) => {
     item.favourite = !value
+  }
+
+  const submitfilter = async () => {
+    const params: any = {}
+    categorySearchParams.forEach((element: any) => {
+      params[element.name.toLowerCase()] = element.value.toLowerCase()
+    })
+
+    setSearchParams(params, location.search)
   }
 
   return (
@@ -250,7 +333,11 @@ const Category: React.FC<any> = ({ match, location }) => {
 
                   setShowFilter(true)
                 }}
-                className="tags filter"
+                className={
+                  filterInSearchParams(filters, searchParams)
+                    ? "active tags filter"
+                    : "tags filter"
+                }
               >
                 Filters
               </button>
@@ -267,11 +354,14 @@ const Category: React.FC<any> = ({ match, location }) => {
                   closeModal={() => {
                     setShowFilter(false)
                   }}
-                  onSubmit={() => alert("dDD")}
+                  onSubmit={submitfilter}
                 >
                   <Filter
-                    page={page.toLowerCase()}
-                    getValues={(value: any) => value}
+                    location={location}
+                    options={filters}
+                    getData={(value: any) => {
+                      setCategorySearchParams(value)
+                    }}
                   />
                 </Modal>
               )}

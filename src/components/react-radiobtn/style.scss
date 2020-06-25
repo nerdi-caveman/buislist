@@ -3,12 +3,14 @@
     display: inline-block;
     padding-bottom: 0;
 
-    label {
+    input+label {
         width: 35px;
         position: relative;
         height: 35px;
         cursor: pointer;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: 1px solid #ccc;
         transition: all .35s;
         border-radius: 7px;
@@ -16,8 +18,6 @@
         &::after {
             content: " ";
             position: absolute;
-            top: 50%;
-            left: 50%;
             margin: auto;
             padding: 0;
             background: transparent;
@@ -26,7 +26,7 @@
             z-index: -1;
             border-radius: 4px;
             transition: all .35s cubic-bezier(.68, -0.55, .27, 1.55);
-            transform: translate(-50%, -50%) scale(0);
+            transform: scale(0);
         }
 
 
@@ -34,10 +34,12 @@
             border: 1px solid #333;
         }
 
-        p {
+        p,
+        .label {
             position: absolute;
             top: 50%;
             left: 50%;
+            cursor: pointer;
             font-family: "Nunito sans";
             font-size: 14px;
             transform: translate(-50%, -50%);
@@ -47,7 +49,7 @@
     }
 
     &.b {
-        label {
+        >label {
             height: fit-content;
             width: auto;
 
@@ -56,7 +58,8 @@
                 height: 75%;
             }
 
-            p {
+            p,
+            .label {
                 position: relative;
                 top: auto;
                 left: auto;
@@ -68,23 +71,23 @@
     }
 
     &.c {
-        display: block;
+        display: flex;
 
-        label {
+        input+label {
             width: 23px;
             height: 23px;
             border-radius: 5px;
             vertical-align: middle;
-            display: inline-block;
 
             &::after {
-                width: 17px;
-                height: 17px;
+                width: 16px;
+                height: 16px;
                 border-radius: 3px;
             }
         }
 
-        p {
+        p,
+        .label {
             display: inline-block;
             position: relative;
             padding: 0 7px;
@@ -96,7 +99,7 @@
             +label {
                 &::after {
                     background: #111;
-                    transform: translate(-51%, -50%) scale(1);
+                    transform: scale(1);
                 }
             }
         }
@@ -108,7 +111,7 @@
 
             &::after {
                 background: #111;
-                transform: translate(-51%, -51%) scale(1);
+                transform: scale(1);
             }
 
             p {
