@@ -62,13 +62,14 @@
   }
 
   #collection-section {
-    .slider.slider-4 > a,
-    .slider.slider-4 .each-img-card > a,
+
+    .slider.slider-4>a,
+    .slider.slider-4 .each-img-card>a,
     .slider.slider-4 .cover {
       width: calc(35vw - 86px);
     }
 
-    .slider > a .img-slide.horizontal-md,
+    .slider>a .img-slide.horizontal-md,
     .slider .cover .img-slide.horizontal-md,
     .slider .each-img-card .img-slide.horizontal-md {
       padding-bottom: 100%;
@@ -122,4 +123,11 @@
       color: #fff;
     }
   }
+}
+
+#collection-section {
+  padding: 0;
+}
+#store-collection-page.main-container {
+  margin-top: calc(100px - 62px);
 }

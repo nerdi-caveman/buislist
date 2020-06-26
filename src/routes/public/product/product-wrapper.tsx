@@ -14,10 +14,10 @@ interface IProductWrapper {
 }
 
 const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
-  const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value
-  }
   const [data] = useState(product)
+
+  const [recentProducts, setRecentProducts] = useState(productsData)
+  const [products, setProducts] = useState(productsData.slice(0, 6))
 
   const [price] = useState(
     parseInt(data?.price) + parseInt(data?.delivery.price)
@@ -26,6 +26,17 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
   const available: boolean =
     data?.delivery.available.includes(location.city) ||
     data?.delivery.available.includes("any")
+
+  const addStoreFavourite = (
+    store: any[],
+    setStore: any,
+    item: any,
+    idx: number
+  ) => {
+    const newProfiles = [...store]
+    newProfiles[idx]["favourite"] = !item.favourite
+    setStore([...newProfiles])
+  }
 
   return (
     <div id="product" className="main-container">
@@ -159,30 +170,20 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
               More from {toCapital(data.store.name)}
             </h2>
             <ProductGrid
-              product={[
-                productsData[0],
-                productsData[1],
-                productsData[2],
-                productsData[4],
-                productsData[5],
-                productsData[3],
-              ]}
-              addToFavourite={addStoreFavourite}
+              product={products}
+              addToFavourite={(item: any, idx: number) => {
+                addStoreFavourite(products, setProducts, item, idx)
+              }}
             />
           </div>
           <div className="section">
             <h2 className="section-header">Recently Viewed</h2>
             <ProductGrid
               id="2"
-              product={[
-                productsData[0],
-                productsData[1],
-                productsData[2],
-                productsData[4],
-                productsData[5],
-                productsData[3],
-              ]}
-              addToFavourite={addStoreFavourite}
+              product={recentProducts}
+              addToFavourite={(item: any, idx: number) => {
+                addStoreFavourite(recentProducts, setRecentProducts, item, idx)
+              }}
             />
           </div>
         </div>

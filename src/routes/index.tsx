@@ -8,6 +8,7 @@ import Category from "./public/category"
 import Stores from "./public/stores"
 import Store from "./public/store"
 import StoreCollection from "./public/store-collection"
+import Favourite from "./private/favourite"
 
 const checkAuth = (val: number): boolean => {
   return val ? true : false
@@ -24,7 +25,7 @@ const AuthRoute: React.FC<any> = ({
   <Route
     {...rest}
     render={(props) =>
-      checkAuth(0) ? (
+      checkAuth(1) ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/login" }} />
@@ -60,6 +61,7 @@ const Routes: React.FC = () => {
       <Route path="/store/:name" render={() => <Store />} />
 
       {/* Private routes */}
+      <AuthRoute path="/favourites" component={Favourite} />
       <AuthRoute path="/settings" component={Home} />
       <Route path="*" render={() => <NotFound />} />
     </Switch>

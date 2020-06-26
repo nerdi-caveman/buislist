@@ -1,6 +1,6 @@
-import React from "react";
-import Searchbar from "../../../components/searchbar";
-import Icon from "@mdi/react";
+import React, { useState } from "react"
+import Searchbar from "../../../components/searchbar"
+import Icon from "@mdi/react"
 import {
   mdiCar,
   mdiHanger,
@@ -14,22 +14,22 @@ import {
   mdiHairDryerOutline,
   mdiChevronRight,
   mdiBookOpenOutline,
-} from "@mdi/js";
-import { Link } from "react-router-dom";
-import Storebanner from "../../../assets/barts-store-signage-1884573.jpg";
-import tech from "../../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
-import carouselimg1 from "../../../assets/cooked-meat-on-plate-2313686.jpg";
-import media from "../../../assets/headphones_camera_retro_122094_3840x2400.jpg";
-import Productbanner from "../../../assets/brown-top-hanging-on-rack-1488464.jpg";
-import Accessoriesbanner from "../../../assets/headphones_bw_headset_120277_3840x2400.jpg";
-import photography from "../../../assets/woman-making-clay-pot-2166456.jpg";
-import ab from "../../../assets/four-assorted-perfume-glass-bottles-965989.jpg";
-import ProductGrid from "../../../components/product-grid";
-import "../../../styles/pages/home.scss";
-import Head from "../../../components/head";
-import StoresGrid from "../../../components/stores-grid";
-import { textToSlug } from "../../../utils/string";
-import { productsData } from "../../../utils/data";
+} from "@mdi/js"
+import { Link } from "react-router-dom"
+import Storebanner from "../../../assets/barts-store-signage-1884573.jpg"
+import tech from "../../../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg"
+import carouselimg1 from "../../../assets/cooked-meat-on-plate-2313686.jpg"
+import media from "../../../assets/headphones_camera_retro_122094_3840x2400.jpg"
+import Productbanner from "../../../assets/brown-top-hanging-on-rack-1488464.jpg"
+import Accessoriesbanner from "../../../assets/headphones_bw_headset_120277_3840x2400.jpg"
+import photography from "../../../assets/woman-making-clay-pot-2166456.jpg"
+import ab from "../../../assets/four-assorted-perfume-glass-bottles-965989.jpg"
+import ProductGrid from "../../../components/product-grid"
+import "../../../styles/pages/home.scss"
+import Head from "../../../components/head"
+import StoresGrid from "../../../components/stores-grid"
+import { textToSlug } from "../../../utils/string"
+import { productsData } from "../../../utils/data"
 
 // let storesImages: any = [
 //   {
@@ -142,7 +142,7 @@ let featuredStores: any = [
     premium: false,
     location: "Port Harcout, Nigeria",
   },
-];
+]
 
 let trendingProducts: any = [
   {
@@ -283,7 +283,7 @@ let trendingProducts: any = [
     premium: false,
     location: "Abuja, Nigeria",
   },
-];
+]
 
 const Categories: React.FC<any> = () => {
   const categories = [
@@ -331,14 +331,18 @@ const Categories: React.FC<any> = () => {
       path: mdiGamepadVariantOutline,
       label: "Gaming",
     },
-  ];
+  ]
   return (
     <div className="categories">
       <h2>Categories</h2>
       <ul>
         {categories.map((item: any, index: number) => (
           <li key={index}>
-            <Link to={`/category/${textToSlug(item.label.toLowerCase())}?location=nigeria`}>
+            <Link
+              to={`/category/${textToSlug(
+                item.label.toLowerCase()
+              )}?location=nigeria`}
+            >
               <Icon path={item.path} color="#222" size={0.8} />
               <p>{item.label}</p>
             </Link>
@@ -346,13 +350,23 @@ const Categories: React.FC<any> = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 const HomeWrapper: React.FC<any> = () => {
-  const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value;
-  };
+  const [recommendedProducts, setRecommendedProducts] = useState(productsData)
+  const [recentProducts, setRecentProducts] = useState(productsData)
+
+  const addStoreFavourite = (
+    store: any[],
+    setStore: any,
+    item: any,
+    idx: number
+  ) => {
+    const newProfiles = [...store]
+    newProfiles[idx]["favourite"] = !item.favourite
+    setStore([...newProfiles])
+  }
 
   return (
     <div id="priv-home">
@@ -365,8 +379,15 @@ const HomeWrapper: React.FC<any> = () => {
             <h2>Products you might like</h2>
           </div>
           <ProductGrid
-            product={productsData}
-            addToFavourite={addStoreFavourite}
+            product={recommendedProducts}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                recommendedProducts,
+                setRecommendedProducts,
+                item,
+                idx
+              )
+            }}
           />
         </section>
       </div>
@@ -386,12 +407,19 @@ const HomeWrapper: React.FC<any> = () => {
       <div className="page-container">
         <section id="trending-products" className="mini-section ">
           <div className="row space-between section-head">
-            <h2>Recent products</h2>
+            <h2>Recently added products</h2>
           </div>
           <ProductGrid
             id="2"
-            product={productsData}
-            addToFavourite={addStoreFavourite}
+            product={recentProducts}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                recentProducts,
+                setRecentProducts,
+                item,
+                idx
+              )
+            }}
           />
           <div className="see-all">
             <Link to="">
@@ -406,12 +434,19 @@ const HomeWrapper: React.FC<any> = () => {
           </div>
           <ProductGrid
             id="3"
-            product={productsData}
-            addToFavourite={addStoreFavourite}
+            product={recentProducts}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                recentProducts,
+                setRecentProducts,
+                item,
+                idx
+              )
+            }}
           />
         </section>
       </div>
     </div>
-  );
-};
-export default HomeWrapper;
+  )
+}
+export default HomeWrapper

@@ -213,6 +213,20 @@ const Category: React.FC<any> = ({ match, location }) => {
   const page: string = toCapital(slugToText(match.params.name))
   const searchParams: any = getSearchParams(location.search)
 
+  const [products, setProducts] = useState(productsData)
+
+  
+  const addStoreFavourite = (
+    store: any[],
+    setStore: any,
+    item: any,
+    idx: number
+  ) => {
+    const newProfiles = [...store]
+    newProfiles[idx]["favourite"] = !item.favourite
+    setStore([...newProfiles])
+  }
+
   const filters: any = [
     {
       label: "Brand",
@@ -279,10 +293,6 @@ const Category: React.FC<any> = ({ match, location }) => {
       current = false
     }
   }, [])
-
-  const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value
-  }
 
   const submitfilter = async () => {
     const params: any = {}
@@ -368,10 +378,17 @@ const Category: React.FC<any> = ({ match, location }) => {
             </div>
           </div>
           <section className="">
-            <ProductGrid
-              product={productsData}
-              addToFavourite={addStoreFavourite}
-            />
+          <ProductGrid
+            product={products}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                products,
+                setProducts,
+                item,
+                idx
+              )
+            }}
+          />
           </section>
         </main>
       </div>

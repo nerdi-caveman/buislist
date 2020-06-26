@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import "../styles/components/header.scss"
 
 interface IUserHeader {
@@ -14,7 +14,7 @@ const UserHeader: React.FC<IUserHeader> = ({ position = "fixed" }) => {
         <ul id="main-nav">
           <li>My Store</li>
           <li>Inbox</li>
-          <li>Favourites</li>
+          <li><NavLink to ="/favourites">Favourites</NavLink> </li>
           <li>
             <div id="usr-icon">
               <div id="usr-img"></div>
