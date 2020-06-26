@@ -12,7 +12,7 @@ const UserHeader: React.FC<IUserHeader> = ({ position = "fixed" }) => {
       <nav>
         <Link to="" id="logo"></Link>
         <ul id="main-nav">
-          <li>Stores</li>
+          <li>My Store</li>
           <li>Inbox</li>
           <li>Favourites</li>
           <li>
