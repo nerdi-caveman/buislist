@@ -4,24 +4,27 @@ import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactCarousel from "./react-carousel";
 import badge from "../assets/verified-badge.png";
 import Icon from "@mdi/react";
-import { mdiMapMarker, mdiStar, mdiHeart, mdiHeartOutline } from "@mdi/js";
+import { mdiMapMarker, mdiStar, mdiHeart, mdiHeartOutline, mdiClose } from "@mdi/js";
 
 interface IStoresGrid {
   stores: any;
-  grid: number;
-  id: string;
-  showDetails: boolean;
-  addToFavourite: any;
+  grid?: number;
+  id?: string;
+  showDetails?: boolean;
+  addToFavourite?: any;
+  removeFavouriteIcon?:boolean
+  removeFromFavourite?: Function | any
 }
 
-const StoresGrid: React.FC<any> = ({
+const StoresGrid: React.FC<IStoresGrid> = ({
   stores,
   grid = 6,
   id = "1",
   showDetails = true,
   addToFavourite,
-}: IStoresGrid) => {
-  const [storesState, setStoresState] = useState(stores);
+  removeFavouriteIcon = false,
+  removeFromFavourite,
+}) => {
 
   //   const reducer = (state: any, action: { type: string, index:number | string, value :any }) => {
   //     switch (action.type) {
@@ -34,41 +37,43 @@ const StoresGrid: React.FC<any> = ({
   //   };
   //   const [storesState, dispatch] = useReducer(reducer, stores);
 
-  const updateFavourite = (item: any, index: number) => {
-    const newStores = [...storesState];
-    newStores[index]["favourite"] = !item.favourite;
-    setStoresState(() => [...newStores]);
-
-    addToFavourite(item, !item.favourite);
-  };
-
   return (
     <div className="store-banner">
       <div className={`grid grid-${grid}`}>
-        {storesState.map((item: any, index: number) => (
+        {stores.map((item: any, index: number) => (
           <div key={index}>
             <div className="favourite">
-              <input
-                checked={item.favourite !== undefined ? item.favourite : false}
-                type="checkbox"
-                id={"favourite" + index + id}
-                name={"favourite" + index + id}
-                onChange={() => updateFavourite(item, index)}
-              />
-              <label htmlFor={`favourite${index}${id}`}>
-                <Icon
-                  className="not-selected"
-                  path={mdiHeartOutline}
-                  size={0.9}
-                  color="#444444"
-                />
-                <Icon
-                  className="selected"
-                  path={mdiHeart}
-                  size={0.9}
-                  color="#444444"
-                />
-              </label>
+              {/* decide the view for either remove from or add to favourite*/}
+              {!removeFavouriteIcon ? (
+                <>
+                  <button onClick={() => addToFavourite(item, index)}>
+                    {item.favourite ? (
+                      <Icon
+                        path={mdiHeart}
+                        size={0.8}
+                        color="#222222"
+                      />
+                    ) : (
+                      <Icon
+                        path={mdiHeartOutline}
+                        size={0.8}
+                        color="#222222"
+                      />
+                    )}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => removeFromFavourite(item, index)}>
+                    <Icon
+                      className="not-selected"
+                      path={mdiClose}
+                      size={0.8}
+                      color="#222222"
+                    />
+                  </button>
+                </>
+              )}
             </div>
             <Link to="/" className="each-img-card">
               <div className="vertical-md fig">

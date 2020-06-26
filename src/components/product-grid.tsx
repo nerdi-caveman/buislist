@@ -22,16 +22,6 @@ const ProductGrid: React.FC<IProductGrid> = ({
   removeFromFavourite,
   id = 1,
 }) => {
-  const [productState, setProductState] = useState(product)
-
-  const updateFavourite = (item: any, index: number) => {
-    const newProfiles = [...product]
-    newProfiles[index]["favourite"] = !item.favourite
-    setProductState([...newProfiles])
-
-    addToFavourite(item, !item.favourite)
-  }
-
   return (
     <div className="product-banner">
       <div className={`grid grid-${grid}`}>
@@ -43,17 +33,9 @@ const ProductGrid: React.FC<IProductGrid> = ({
                 <>
                   <button onClick={() => addToFavourite(item, index)}>
                     {item.favourite ? (
-                      <Icon
-                        path={mdiHeart}
-                        size={0.8}
-                        color="#222222"
-                      />
+                      <Icon path={mdiHeart} size={0.8} color="#222222" />
                     ) : (
-                      <Icon
-                        path={mdiHeartOutline}
-                        size={0.8}
-                        color="#222222"
-                      />
+                      <Icon path={mdiHeartOutline} size={0.8} color="#222222" />
                     )}
                   </button>
                 </>
@@ -74,7 +56,7 @@ const ProductGrid: React.FC<IProductGrid> = ({
               <div className="">
                 <Slider
                   id={`slider22${id}${index}`}
-                  images={item.carouselImages}
+                  images={item.carouselImages.slice(0, 1)}
                   margin={6}
                   url={`/product/${textToSlug("JBL Headphones")}/${id}`}
                 />

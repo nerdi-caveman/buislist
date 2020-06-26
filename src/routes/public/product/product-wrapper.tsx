@@ -165,8 +165,8 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
       </div>
       <div className="page-container">
         <div className="section-container">
-          <div className="section">
-            <h2 className="section-header">
+          <div className="section mini-section">
+            <h2 className="section-head">
               More from {toCapital(data.store.name)}
             </h2>
             <ProductGrid
@@ -176,8 +176,8 @@ const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
               }}
             />
           </div>
-          <div className="section">
-            <h2 className="section-header">Recently Viewed</h2>
+          <div className="section mini-section">
+            <h2 className="section-head">Recently Viewed</h2>
             <ProductGrid
               id="2"
               product={recentProducts}
