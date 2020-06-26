@@ -53,6 +53,7 @@ const Store: React.FC<IStore> = ({ match }) => {
       />
       <StoreWrapper
         storeData={storeData}
+        setStoreData = {setStoreData}
         setToFavourite={(value: boolean) => {
           setStoreData({ ...storeData, favourite: value })
         }}

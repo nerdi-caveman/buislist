@@ -1,22 +1,25 @@
-import React, { useState } from "react"
+import React from "react"
 import UserHeader from "../../../components/userheader"
 import Tab from "../../../components/tab"
 import { getSearchParams } from "../../../utils"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import ProductGrid from "../../../components/product-grid"
-import { productsData } from "../../../utils/data"
+interface IFavouriteWrapper extends RouteComponentProps {
+  favouriteProduct: any[]
+  setFavouriteProduct: any
+}
 
-interface IFavouriteWrapper extends RouteComponentProps {}
-
-const FavouriteWrapper: React.FC<IFavouriteWrapper> = ({ location }) => {
-  const [favouriteProduct, setFavouriteProduct] = useState(productsData)
-
+const FavouriteWrapper: React.FC<IFavouriteWrapper> = ({
+  favouriteProduct,
+  setFavouriteProduct,
+  location,
+}) => {
   const removeFromFavourite: Function = (item: any, idx: number) => {
     const obj = [...favouriteProduct]
     obj.splice(obj.indexOf(item), 1)
     setFavouriteProduct(obj)
-    console.log(obj)
   }
+  const tab: string = getSearchParams(location.search).tab || ""
 
   return (
     <div className="">
@@ -30,11 +33,19 @@ const FavouriteWrapper: React.FC<IFavouriteWrapper> = ({ location }) => {
             getSelected={() => {}}
           />
 
-          <ProductGrid
-            product={favouriteProduct}
-            removeFavouriteIcon={true}
-            removeFromFavourite={removeFromFavourite}
-          />
+          <section className="section-container">
+            <div className="mini-section">
+              {tab.toLowerCase() !== "stores" ? (
+                <ProductGrid
+                  product={favouriteProduct}
+                  removeFavouriteIcon={true}
+                  removeFromFavourite={removeFromFavourite}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </section>
         </main>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Icon from "@mdi/react"
-import { mdiHeart, mdiHeartOutline, mdiCloseCircle, mdiClose } from "@mdi/js"
+import { mdiHeart, mdiHeartOutline, mdiClose } from "@mdi/js"
 import Slider from "./slider"
 import { formatCurrency } from "../modules/price"
 import { textToSlug } from "../utils/string"

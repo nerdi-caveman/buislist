@@ -76,11 +76,13 @@ type store = ISocialMedia & {
 
 interface IStoreWrapper {
   storeData: store
+  setStoreData:any
   setToFavourite: Function
 }
 
 const StoreWrapper: React.FC<IStoreWrapper> = ({
   storeData,
+  setStoreData,
   setToFavourite,
 }) => {
   const {
@@ -100,8 +102,15 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
     location,
   } = storeData
 
-  const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value
+  const addStoreFavourite:Function = (
+    store: any[],
+    setStore: any,
+    item: any,
+    idx: number
+  ) => {
+    const newProfiles = [...store]
+    newProfiles[idx]["favourite"] = !item.favourite
+    setStore([...newProfiles])
   }
 
   const collectionSlider = collections.map((item: any, idx: number) => {
@@ -157,10 +166,9 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
       <div className="page-container">
         <section id="new-section" className="mini-section ">
           <div className="row space-between section-head">
-            <h2>New</h2>
+            <h2>New and Featured</h2>
           </div>
           <ProductGrid
-            id="new-products"
             grid={4}
             product={collections[2].products}
             addToFavourite={addStoreFavourite}
