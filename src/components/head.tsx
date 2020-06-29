@@ -16,7 +16,7 @@ const Head: React.FC<any> = (props: IHelmet) => {
     <HelmetProvider>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{`${props.title} - Findme`}</title>
+        <title>{`${props.title} - Shopfront`}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -1,17 +1,17 @@
 import React from "react"
-import { toCapital } from "../../utils/string"
-import { Link, NavLink } from "react-router-dom"
+import { toCapital, textToSlug, slugToText } from "../../utils/string"
+import { NavLink } from "react-router-dom"
 import "./style.scss"
 import { getSearchParams } from "../../utils"
-import product from "../../routes/public/product"
 
 interface ITab {
   getSelected?: Function
   search: string
+  defaultTab: string
   links: string[]
 }
 
-const Tab: React.FC<ITab> = ({ search, getSelected, links }) => {
+const Tab: React.FC<ITab> = ({ search, getSelected, defaultTab, links }) => {
   const tabSearchParams: string = getSearchParams(search).tab
   return (
     <nav className="tab-container">
@@ -21,10 +21,11 @@ const Tab: React.FC<ITab> = ({ search, getSelected, links }) => {
             <NavLink
               activeClassName="active"
               isActive={() =>
-                tabSearchParams === item.toLowerCase() ||
-                (!!!tabSearchParams && item.toLowerCase() === "products")
+                slugToText(tabSearchParams || "") === item.toLowerCase() ||
+                (!!!slugToText(tabSearchParams || "") &&
+                  item.toLowerCase() === defaultTab)
               }
-              to={`?tab=${item.toLowerCase()}`}
+              to={`?tab=${textToSlug(item.toLowerCase())}`}
             >
               {toCapital(item)}
             </NavLink>

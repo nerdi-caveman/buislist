@@ -2,22 +2,24 @@ import React from "react"
 import { Link, NavLink } from "react-router-dom"
 import "../styles/components/header.scss"
 
-interface IUserHeader {
+interface IMyStoreHeader {
   position?: "fixed" | "relative"
 }
 
-const UserHeader: React.FC<IUserHeader> = ({ position = "fixed" }) => {
+const MyStoreHeader: React.FC<IMyStoreHeader> = ({ position = "fixed" }) => {
   return (
     <header id="usr-header" style={{ position }}>
       <nav>
         <Link to="" id="logo"></Link>
         <ul id="main-nav">
           <li>
-            <Link to="/my-store" target = "_blank" rel ="noopenner noreferrer">My Store</Link>
+            <NavLink to="/my-store/orders" >Orders</NavLink>
           </li>
-          <li>Inbox</li>
           <li>
-            <NavLink to="/favourites">Favourites</NavLink>
+            <NavLink to="/my-store/products">Products</NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-store/collections">Collections</NavLink>
           </li>
           <li>
             <div id="usr-icon">
@@ -30,4 +32,4 @@ const UserHeader: React.FC<IUserHeader> = ({ position = "fixed" }) => {
     </header>
   )
 }
-export default UserHeader
+export default MyStoreHeader

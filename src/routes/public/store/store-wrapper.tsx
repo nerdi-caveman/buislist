@@ -76,13 +76,20 @@ type store = ISocialMedia & {
 
 interface IStoreWrapper {
   storeData: store
-  setStoreData:any
+  setStoreData?:any
   setToFavourite: Function
+  setFeatured:any
+  featured:any
+  setBestSellers:any
+  bestSellers:any
 }
 
 const StoreWrapper: React.FC<IStoreWrapper> = ({
   storeData,
-  setStoreData,
+  setFeatured,
+  featured,
+  setBestSellers,
+  bestSellers,
   setToFavourite,
 }) => {
   const {
@@ -93,7 +100,6 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
     favourite,
     description,
     collections,
-    bestSellers,
     instagram,
     whatsapp,
     facebook,
@@ -170,8 +176,15 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
           </div>
           <ProductGrid
             grid={4}
-            product={collections[2].products}
-            addToFavourite={addStoreFavourite}
+            product={featured}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                featured,
+                setFeatured,
+                item,
+                idx
+              )
+            }}
           />
         </section>
         <section id="collection-section" className="mini-section ">
@@ -185,12 +198,18 @@ const StoreWrapper: React.FC<IStoreWrapper> = ({
           <div className="row space-between section-head">
             <h2>Best Sellers</h2>
           </div>
-
           <ProductGrid
             id="sellers"
             grid={4}
             product={bestSellers}
-            addToFavourite={addStoreFavourite}
+            addToFavourite={(item: any, idx: number) => {
+              addStoreFavourite(
+                bestSellers,
+                setBestSellers,
+                item,
+                idx
+              )
+            }}
           />
         </section>
       </div>

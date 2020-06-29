@@ -5,7 +5,8 @@ import Home from "./public/home"
 import PrivateHome from "./private/Home"
 import Product from "./public/product"
 import Category from "./public/category"
-import Stores from "./public/stores"
+import MyStore from "./private/my-store"
+import MyStoreOrders from "./private/my-store-orders"
 import Store from "./public/store"
 import StoreCollection from "./public/store-collection"
 import Favourite from "./private/favourite"
@@ -55,13 +56,16 @@ const Routes: React.FC = () => {
       <Route path="/signup" render={() => <Home />} />
       <Route path="/profile/:username" render={() => <Home />} />
       <Route path="/category/:name" render={() => <Category />} />
-      <Route path="/stores" render={() => <Stores />} />
       <Route path="/product/:name/:id" render={() => <Product />} />
       <Route path="/store/:name/collection/:collectionName" render={() => <StoreCollection />} />
       <Route path="/store/:name" render={() => <Store />} />
 
       {/* Private routes */}
       <AuthRoute path="/favourites" component={Favourite} />
+      <AuthRouteRedirectTo path="/my-store/orders" component={MyStoreOrders} to={Home} />
+      <AuthRouteRedirectTo path="/my-store/products" component={PrivateHome} to={Home} />
+      <AuthRouteRedirectTo path="/my-store/collections" component={PrivateHome} to={Home} />
+      <AuthRouteRedirectTo path="/my-store" component={MyStore} to={Home} />
       <AuthRoute path="/settings" component={Home} />
       <Route path="*" render={() => <NotFound />} />
     </Switch>

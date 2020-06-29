@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg";
 import ReactCarousel from "./react-carousel";

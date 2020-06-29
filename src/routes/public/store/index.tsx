@@ -39,6 +39,8 @@ const Store: React.FC<IStore> = ({ match }) => {
     bestSellers: productsData.slice(0, 3),
   }
   const [storeData, setStoreData] = useState(data)
+  const [bestSellers, setBestSellers] = useState(data.bestSellers)
+  const [featured, setFeatured] = useState(data.collections[0].products)
   return (
     <>
       {checkAuth(1) ? <UserHeader position="relative" /> : <Header />}
@@ -52,6 +54,10 @@ const Store: React.FC<IStore> = ({ match }) => {
         navigation={storeData.collections}
       />
       <StoreWrapper
+      bestSellers = {bestSellers}
+      setBestSellers = {setBestSellers}
+      featured = {featured}
+      setFeatured = {setFeatured}
         storeData={storeData}
         setStoreData = {setStoreData}
         setToFavourite={(value: boolean) => {

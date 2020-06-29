@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Icon from "@mdi/react"
 import { mdiHeart, mdiHeartOutline, mdiClose } from "@mdi/js"
 import Slider from "./slider"

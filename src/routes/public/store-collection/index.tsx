@@ -23,7 +23,7 @@ const StoreCollection: React.FC<IStoreCollection> = ({ match }) => {
     item.favourite = !value
   }
 
-  const [storeData, setStoreData] = useState({
+  const [storeData] = useState({
     name: slugToText(match.params.name),
     phone: "1938",
     location: "Ibadan",

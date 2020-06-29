@@ -32,7 +32,7 @@ const FavouriteWrapper: React.FC<IFavouriteWrapper> = ({
           <Tab
             search={location.search}
             links={["Products", "Stores"]}
-            getSelected={() => {}}
+            defaultTab="products"
           />
 
           <section className="section-container">
@@ -44,7 +44,7 @@ const FavouriteWrapper: React.FC<IFavouriteWrapper> = ({
                   removeFromFavourite={(item: any, idx: number) => {
                     removeFromFavourite(
                       favouriteProduct,
-                      setFavouriteProduct ,
+                      setFavouriteProduct,
                       item,
                       idx
                     )
