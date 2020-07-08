@@ -1,17 +1,22 @@
-import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
-import NotFound from "./public/notfound";
-import Home from "./public/home";
-import PrivateHome from "./private/Home";
-import Product from "./public/product";
-import Category from "./public/category";
+import React from "react"
+import { Route, Redirect, Switch } from "react-router-dom"
+import NotFound from "./public/notfound"
+import Home from "./public/home"
+import PrivateHome from "./private/Home"
+import Product from "./public/product"
+import Category from "./public/category"
+import MyStore from "./private/my-store"
+import MyStoreOrders from "./private/my-store-orders"
+import Store from "./public/store"
+import StoreCollection from "./public/store-collection"
+import Favourite from "./private/favourite"
 
 const checkAuth = (val: number): boolean => {
-  return val ? true : false;
-};
+  return val ? true : false
+}
 
 interface IComponent {
-  component: React.FC<any>;
+  component: React.FC<any>
 }
 
 const AuthRoute: React.FC<any> = ({
@@ -21,14 +26,14 @@ const AuthRoute: React.FC<any> = ({
   <Route
     {...rest}
     render={(props) =>
-      checkAuth(0) ? (
+      checkAuth(1) ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/login" }} />
       )
     }
   />
-);
+)
 
 const AuthRouteRedirectTo: React.FC<any> = ({
   component: Component,
@@ -41,7 +46,7 @@ const AuthRouteRedirectTo: React.FC<any> = ({
       checkAuth(1) ? <Component {...props} /> : <To {...props} />
     }
   />
-);
+)
 
 const Routes: React.FC = () => {
   return (
@@ -51,15 +56,20 @@ const Routes: React.FC = () => {
       <Route path="/signup" render={() => <Home />} />
       <Route path="/profile/:username" render={() => <Home />} />
       <Route path="/category/:name" render={() => <Category />} />
-      <Route path="/store" render={() => <Home />} />
-      <Route path="/store/:name" render={() => <Home />} />
       <Route path="/product/:name/:id" render={() => <Product />} />
+      <Route path="/store/:name/collection/:collectionName" render={() => <StoreCollection />} />
+      <Route path="/store/:name" render={() => <Store />} />
 
       {/* Private routes */}
+      <AuthRoute path="/favourites" component={Favourite} />
+      <AuthRouteRedirectTo path="/my-store/orders" component={MyStoreOrders} to={Home} />
+      <AuthRouteRedirectTo path="/my-store/products" component={PrivateHome} to={Home} />
+      <AuthRouteRedirectTo path="/my-store/collections" component={PrivateHome} to={Home} />
+      <AuthRouteRedirectTo path="/my-store" component={MyStore} to={Home} />
       <AuthRoute path="/settings" component={Home} />
       <Route path="*" render={() => <NotFound />} />
     </Switch>
-  );
-};
+  )
+}
 
-export default Routes;
+export default Routes

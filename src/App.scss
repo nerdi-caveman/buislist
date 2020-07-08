@@ -458,7 +458,8 @@ body {
     display: none;
   }
 
-  label {
+  label,
+  button {
     position: absolute;
     right: 7px;
     top: 7px;
@@ -483,6 +484,19 @@ body {
 
     .not-selected {
       display: block;
+    }
+  }
+
+  button {
+    border: none;
+    outline: none;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: auto;
+      transform: translate(-50%, -50%);
     }
   }
 }

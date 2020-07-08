@@ -1,0 +1,133 @@
+#store {
+  margin-top: 0px;
+  padding: 0;
+
+  .mini-section {
+    padding: 30px 0;
+  }
+
+  #store-desc {
+    background: #000;
+    padding: 50px 0;
+
+    #add-store {
+      float: right;
+    }
+
+    h1 {
+      margin-top: 10px;
+    }
+
+    * {
+      color: #fff;
+    }
+
+    p {
+      margin-top: 13px;
+
+      &.desc {
+        margin-top: 13px;
+        width: 50vw;
+      }
+    }
+
+    .social-media {
+      margin-top: 10px;
+
+      li {
+        padding: 10px;
+        display: inline-block;
+        transition: background 0.35s;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+
+        svg {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        &:hover {
+          background: lighten(#000000, 10);
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  #collection-section {
+
+    .slider.slider-4>a,
+    .slider.slider-4 .each-img-card>a,
+    .slider.slider-4 .cover {
+      width: calc(35vw - 86px);
+    }
+
+    .slider>a .img-slide.horizontal-md,
+    .slider .cover .img-slide.horizontal-md,
+    .slider .each-img-card .img-slide.horizontal-md {
+      padding-bottom: 100%;
+    }
+  }
+
+  #contact-seller {
+    position: fixed;
+    bottom: 0px;
+    z-index: 99999;
+    right: 60px;
+
+    .container {
+      background-color: #fff;
+      position: relative;
+      border: 1px solid #f5f5f5;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      width: fit-content;
+
+      ul {
+        width: 20em;
+        display: flex;
+        padding: 12px;
+
+        li {
+          flex: 1;
+          display: block;
+          margin: 0;
+          margin-right: 12px;
+          display: flex;
+
+          .btn {
+            flex: 1;
+            text-align: center;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    background: #000;
+    padding: 30px 0;
+
+    * {
+      color: #fff;
+    }
+  }
+}
+
+#collection-section {
+  padding: 0;
+}
+#store-collection-page.main-container {
+  margin-top: calc(100px - 62px);
+}

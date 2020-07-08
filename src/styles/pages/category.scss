@@ -2,7 +2,7 @@
     main {
         h1 {
             margin: 15px 0;
-            font-size:2rem;
+            font-size: 2rem;
         }
 
         section {
@@ -67,6 +67,43 @@
 
         button {
             display: block;
+        }
+    }
+
+    #filter-container {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .container {
+            padding: 30px 25px;
+
+            &.space-between {
+                justify-content: space-between;
+            }
+
+            .search-datalist {
+                position: relative;
+                width: 100%;
+                flex: 1 1;
+            }
+
+            .form-control {
+                margin: 20px 25px;
+                display: grid;
+                grid-gap: 15px;
+                grid-template-columns: 1fr 1fr;
+
+                .form-group.c input + label {
+                    width: 24px;
+                    height: 24px;
+
+                    &::after {
+                        width: 17px;
+                        height: 17px;
+                        border-radius: 2px;
+                    }
+                }
+            }
         }
     }
 }

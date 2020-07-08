@@ -4,14 +4,14 @@
  * @author Inioluwa Sogelola
  */
 export const getSearchParams = (str: string): any => {
-  const searchParams: any = {};
+  const searchParams: any = {}
 
-  const url = new URLSearchParams(str);
+  const url = new URLSearchParams(str)
   for (const key of Array.from(url.keys())) {
-    searchParams[key] = url.get(key);
+    searchParams[key] = url.get(key)
   }
-  return searchParams;
-};
+  return searchParams
+}
 
 /**
  * Sets or appends object to the URL search params
@@ -20,10 +20,12 @@ export const getSearchParams = (str: string): any => {
  * @author Inioluwa Sogelola
  */
 export const setSearchParams = (obj: any, searchUrl: string = "?"): void => {
-  const url = new URLSearchParams(searchUrl);
+  const url = new URLSearchParams(searchUrl)
 
   for (let [key] of Object.entries(obj)) {
-    url.set(key, obj[key]);
+    url.set(key, obj[key])
   }
-  window.location.search = url.toString();
-};
+  window.location.search = url.toString()
+}
+
+export const checkAuth = (val: number): boolean => Boolean(val)

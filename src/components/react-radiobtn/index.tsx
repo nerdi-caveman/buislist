@@ -1,48 +1,54 @@
-import React from "react";
-import "./style.scss";
+import React from "react"
+import "./style.scss"
 
 interface IReactRadioBtn {
-  onSelect: Function;
-  items: any;
-  id: string;
-  type?: string;
+  onSelect: Function
+  items: any
+  id: string
+  defaultChecked?: number
+  type?: string
 }
 
-const ReactRadioBtn: React.FC<any> = ({
+const ReactRadioBtn: React.FC<IReactRadioBtn> = ({
   onSelect,
   items,
+  defaultChecked,
   id,
   type = "b",
-}: IReactRadioBtn) => {
+}) => {
   if (type === "c") {
     return (
       <>
         {items.map((item: any, index: number) => (
-          <div key={index} id={id} className={`form-group ${type}`}>
+          <div key={index} className={`form-group ${type}`}>
             <input
               name={id}
               id={id + index}
-              type="radio"
-              defaultChecked = {index === 0}
+              type={"radio"}
+              defaultChecked={index === defaultChecked}
               value={item.value}
-              onChange={(e: any) => onSelect(e.target.value)}
+              onClick={(e: any) => {
+                onSelect(e.target.value)
+              }}
             />
             <label htmlFor={id + index}></label>
-            <p>{item.label}</p>
+            <label className="label" htmlFor={id + index}>
+              {item.label}
+            </label>
           </div>
         ))}
       </>
-    );
+    )
   }
   return (
     <>
       {items.map((item: any, index: number) => (
-        <div key={index} id={id} className={`form-group ${type}`}>
+        <div key={index} className={`form-group ${type}`}>
           <input
             name={id}
             id={id + index}
-            type="radio"
-            defaultChecked = {index === 0}
+            type={"radio"}
+            defaultChecked={index === defaultChecked}
             value={item}
             onChange={(e: any) => onSelect(e.target.value)}
           />
@@ -52,6 +58,6 @@ const ReactRadioBtn: React.FC<any> = ({
         </div>
       ))}
     </>
-  );
-};
-export default ReactRadioBtn;
+  )
+}
+export default ReactRadioBtn

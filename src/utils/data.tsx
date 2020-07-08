@@ -94,7 +94,7 @@ export const productsData: any = [
       { name: "Brand", value: "Apple" },
       { name: "Model", value: "Iphone 11" },
       { name: "RAM", value: "2 GB" },
-      { name: "Internmal Storage", value: "128 GB" },
+      { name: "Intern   mal Storage", value: "128 GB" },
       { name: "OS", value: "IOS 13" },
     ],
   },
@@ -114,7 +114,7 @@ export const productsData: any = [
     description: "lorem Ipsum",
     delivery: { price: 500, available: ["ibadan", "lagos", "abuja"] },
     store: {
-      name: "ini stores",
+      name: "Ini stores inc",
       category: "Phones, pcs & Gadgets",
       img: profileimg,
       verified: true,
@@ -378,3 +378,66 @@ export const productsData: any = [
     ],
   },
 ];
+
+export const storesData: any = [
+  {
+    id: 1,
+    carouselImages: [{ src: media }, { src: tech }],
+    premium: true,
+    location: "Ibadan, Nigeria",
+  },
+  {
+    id: 2,
+    carouselImages: [
+      { src: carouselimg1 },
+      { src: Storebanner },
+      { src: Productbanner },
+      { src: tech },
+      { src: Accessoriesbanner },
+    ],
+    premium: false,
+    location: "Anambra, Nigeria",
+  },
+  {
+    id: 3,
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner },
+    ],
+    premium: true,
+    location: "Ibadan, Nigeria",
+  },
+  {
+    id: 4,
+    carouselImages: [
+      { src: Storebanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: photography },
+      { src: tech },
+    ],
+    premium: false,
+    location: "Port Harcout, Nigeria",
+  },
+  {
+    id: 5,
+    carouselImages: [{ src: media }, { src: tech }],
+    premium: true,
+    location: "Ibadan, Nigeria",
+  },
+  {
+    id: 6,
+    carouselImages: [
+      { src: tech },
+      { src: Productbanner },
+      { src: media },
+      { src: carouselimg1 },
+      { src: Accessoriesbanner },
+    ],
+    premium: true,
+    location: "Ibadan, Nigeria",
+  },
+]

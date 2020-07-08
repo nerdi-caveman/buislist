@@ -1,9 +1,11 @@
-#usr-header {
+#usr-header,
+#store-header {
     position: fixed;
     background: #fff;
     z-index: 9999;
 
-    #logo {
+    #logo,
+    #store-logo {
         margin-left: 80px;
     }
 
@@ -12,6 +14,35 @@
 
         li {
             color: #222;
+            vertical-align: baseline;
+
+            a {
+                align-items: center;
+                display: flex;
+                position: relative;
+
+                &::after {
+                    background: transparent;
+                    content: "";
+                    position: absolute;
+                    bottom: -1px;
+                    transition: background .25s ease;
+                    height: 1px;
+                    width: 100%;
+                }
+
+                &:hover {
+                    &::after {
+                        background: #000000;
+                    }
+                }
+
+                &.active {
+                    &::after {
+                        background: #000000;
+                    }
+                }
+            }
 
             #usr-icon {
                 width: 40px;
@@ -26,6 +57,32 @@
                     border-radius: 50px;
                 }
             }
+        }
+    }
+}
+
+#store-header {
+    position: sticky;
+    top: 0px;
+    height: 60px;
+    border: 1px solid #f1f1f1;
+    vertical-align: top;
+
+    #store-logo {
+        svg {
+            margin-right: 5px;
+        }
+
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: .1em;
+        align-items: center;
+        display: flex;
+    }
+
+    #main-nav {
+        ul {
+            position: absolute;
         }
     }
 }

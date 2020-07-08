@@ -1,0 +1,53 @@
+.tab-container {
+    border-bottom: 1px solid #00000011;
+    margin: 15px 0;
+    margin-bottom: 0px;
+    position: sticky;
+    top: 80px;
+    z-index: 9999;
+    background: #fff;
+
+    li {
+        display: inline-block;
+        width: max-content;
+        text-align: center;
+        margin: 0 15px;
+
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
+            color: #777;
+            font-weight: 500;
+            padding: 13px 0;
+            display: block;
+            position: relative;
+            transition: all .25s ease-in-out;
+
+            &.active {
+                color: #222;
+
+                &::after {
+                    background: #222;
+                }
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                background: transparent;
+                height: 2px;
+                bottom: -1px;
+                transition: all .25s ease-in-out;
+            }
+
+            &:hover::after {
+                background: #222;
+            }
+        }
+    }
+}

@@ -1,26 +1,42 @@
-import React, { useState } from "react";
-import Head from "../../../components/head";
-import { productsData } from "../../../utils/data";
-import Slider from "../../../components/slider";
-import "../../../styles/pages/product.scss";
-import { formatCurrency } from "../../../modules/price";
-import ReactRadioBtn from "../../../components/react-radiobtn";
-import { toCapital } from "../../../utils/string";
-import ProductGrid from "../../../components/product-grid";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import Head from "../../../components/head"
+import { productsData } from "../../../utils/data"
+import Slider from "../../../components/slider"
+import "../../../styles/pages/product.scss"
+import { formatCurrency } from "../../../modules/price"
+import ReactRadioBtn from "../../../components/react-radiobtn"
+import { toCapital, textToSlug } from "../../../utils/string"
+import ProductGrid from "../../../components/product-grid"
+import { Link } from "react-router-dom"
 
-const ProductWrapper: React.FC<any> = () => {
-  const addStoreFavourite = (item: any, value: boolean) => {
-    item.favourite = !value;
-  };
-  const data = productsData[3];
+interface IProductWrapper {
+  product: any
+}
+
+const ProductWrapper: React.FC<IProductWrapper> = ({ product }) => {
+  const [data] = useState(product)
+
+  const [recentProducts, setRecentProducts] = useState(productsData)
+  const [products, setProducts] = useState(productsData.slice(0, 6))
+
   const [price] = useState(
-    parseInt(data.price) + parseInt(data.delivery.price)
-  );
-  const location = data.location;
+    parseInt(data?.price) + parseInt(data?.delivery.price)
+  )
+  const location = data?.location
   const available: boolean =
-    data.delivery.available.includes(location.city) ||
-    data.delivery.available.includes("any");
+    data?.delivery.available.includes(location.city) ||
+    data?.delivery.available.includes("any")
+
+  const addStoreFavourite = (
+    store: any[],
+    setStore: any,
+    item: any,
+    idx: number
+  ) => {
+    const newProfiles = [...store]
+    newProfiles[idx]["favourite"] = !item.favourite
+    setStore([...newProfiles])
+  }
 
   return (
     <div id="product" className="main-container">
@@ -47,7 +63,7 @@ const ProductWrapper: React.FC<any> = () => {
                 </p>
               </div>
               <div className="store-logo">
-                <Link to={`/stores/${data.store.name}`}>
+                <Link to={`/store/${textToSlug(data.store.name)}`}>
                   <div className="rounded-img img-md">
                     <img src={data.store.img} alt="store logo" />
                   </div>
@@ -68,7 +84,7 @@ const ProductWrapper: React.FC<any> = () => {
               <h3>Specifications</h3>
               <ul>
                 {data.specifications.map((item: any, index: number) => (
-                  <li>
+                  <li key={index}>
                     <h4>{item.name}: </h4>
                     <p>{item.value}</p>
                   </li>
@@ -90,8 +106,9 @@ const ProductWrapper: React.FC<any> = () => {
                   <div className="section">
                     <p className="label label-md ">Size</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="size"
                       type="b"
@@ -101,8 +118,9 @@ const ProductWrapper: React.FC<any> = () => {
                   <div className="section">
                     <p className="label label-md ">Color</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="color"
                       items={["black", "Rose", "Gold", "Silver", "Green"]}
@@ -111,8 +129,9 @@ const ProductWrapper: React.FC<any> = () => {
                   <div className="section">
                     <p className="label label-md ">Delivery options</p>
                     <ReactRadioBtn
+                      defaultChecked={0}
                       onSelect={(value: string) => {
-                        console.log(value);
+                        console.log(value)
                       }}
                       id="delivery-options"
                       type="c"
@@ -146,40 +165,30 @@ const ProductWrapper: React.FC<any> = () => {
       </div>
       <div className="page-container">
         <div className="section-container">
-          <div className="section">
-            <h2 className="section-header">
+          <div className="section mini-section">
+            <h2 className="section-head">
               More from {toCapital(data.store.name)}
             </h2>
             <ProductGrid
-              product={[
-                productsData[0],
-                productsData[1],
-                productsData[2],
-                productsData[4],
-                productsData[5],
-                productsData[3],
-              ]}
-              addToFavourite={addStoreFavourite}
+              product={products}
+              addToFavourite={(item: any, idx: number) => {
+                addStoreFavourite(products, setProducts, item, idx)
+              }}
             />
           </div>
-          <div className="section">
-            <h2 className="section-header">Recently Viewed</h2>
+          <div className="section mini-section">
+            <h2 className="section-head">Recently Viewed</h2>
             <ProductGrid
               id="2"
-              product={[
-                productsData[0],
-                productsData[1],
-                productsData[2],
-                productsData[4],
-                productsData[5],
-                productsData[3],
-              ]}
-              addToFavourite={addStoreFavourite}
+              product={recentProducts}
+              addToFavourite={(item: any, idx: number) => {
+                addStoreFavourite(recentProducts, setRecentProducts, item, idx)
+              }}
             />
           </div>
         </div>
       </div>
     </div>
-  );
-};
-export default ProductWrapper;
+  )
+}
+export default ProductWrapper

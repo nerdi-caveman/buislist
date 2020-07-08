@@ -1,9 +1,9 @@
 import React from "react";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Header from "../components/header";
+import Header from "../../components/header";
 import { MemoryRouter as Router } from "react-router-dom";
-import UserHeader from "../components/userheader";
+import UserHeader from "../../components/userheader";
 
 Enzyme.configure({ adapter: new Adapter() });
 
