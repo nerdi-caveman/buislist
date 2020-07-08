@@ -1,0 +1,37 @@
+.tags {
+    background: #fff;
+    border: 1px solid lighten($dimgray, 8);
+    outline: none;
+    padding: 9px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all .25s;
+    margin-right: 15px;
+    font-size: 14px;
+    position: relative;
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        transform: translate(-50.5%, -52%);
+        margin: auto;
+        border: 2px solid transparent;
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        border-radius: 50px;
+    }
+
+    &.active {
+        border: 1px solid $black;
+
+        &::before {
+            border: 2px solid $black;
+        }
+    }
+
+    &:hover {
+        border: 1px solid $black;
+    }
+}

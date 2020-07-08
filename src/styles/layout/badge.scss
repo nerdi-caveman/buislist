@@ -1,0 +1,29 @@
+.badge {
+    width: fit-content;
+    font-family: 'Nunito sans';
+    text-transform: uppercase;
+    border: 1px solid $wine;
+    border-radius: 3px;
+    color: $wine !important;
+
+    &.badge-sm {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 5px;
+    }
+    &.badge-sm-back {
+        background: $wine;
+        color: #fff !important;
+    }
+
+    &.badge-md {
+        font-size: 15px;
+        font-weight: 400;
+        // letter-spacing: 0.6px;
+        padding: 1px 8px;
+    }
+    &.badge-sm-back {
+        background: $wine;
+        color: #fff !important;
+    }
+}

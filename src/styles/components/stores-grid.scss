@@ -1,0 +1,151 @@
+.grid>div .fig {
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 0 !important;
+    width: inherit;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, .1) 20%, rgba(0, 0, 0, .3));
+        z-index: 1;
+    }
+}
+
+.store-desc {
+    margin: 6px 0;
+
+    .label {
+        text-transform: uppercase;
+        font-family: 'Nunito sans';
+        color: $dimgray;
+        margin: 3px 0;
+
+        &.label-sm {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        &.label-md {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .review {
+            color: $dimgray;
+            font-weight: 400;
+        }
+    }
+
+    svg {
+        vertical-align: sub;
+    }
+
+    .desc {
+        font-weight: 500;
+        font-size: 15px;
+        margin: 4px 0;
+        font-family: 'Nunito sans';
+        line-height: 1.2rem;
+    }
+
+    .rating {
+        font-family: 'Nunito sans';
+        color: $purple;
+
+        svg {
+            width: 1rem;
+            height: 1rem;
+            vertical-align: text-top;
+        }
+    }
+}
+
+.store-details {
+    z-index: 9;
+    border-radius: 0 !important;
+    bottom: 0;
+    padding-bottom: 0 !important;
+    position: absolute !important;
+    overflow: visible !important;
+    bottom: 0;
+    margin: 6px 9px;
+    width: calc(100% - 20px) !important;
+
+    .img {
+        border-radius: 100px;
+        width: 37px;
+        overflow: hidden;
+        height: 37px !important;
+        position: relative;
+        display: inline-block;
+        border: 1px solid rgba(#000, .05);
+
+        img {
+            position: absolute;
+        }
+    }
+
+    figcaption {
+        // position: relative !important;
+        bottom: 8px !important;
+        display: inline-block;
+        left: auto !important;
+        margin: 0px 0 0 10px;
+        font-size: 16px !important;
+        transform: none !important;
+
+        p {
+            color: #fff;
+            display: inline-block;
+        }
+
+        img {
+            display: inline-block;
+            z-index: 9;
+            position: relative;
+            vertical-align: sub;
+            top: auto;
+            left: auto;
+            transform: none;
+            width: 19px !important;
+            min-width: 19px !important;
+            height: 19px;
+
+            path {
+                fill: rgb(61, 152, 212);
+            }
+        }
+    }
+}
+
+.store-banner .each-img-card .react-carousel {
+
+    .carousel {
+        padding-bottom: 128%;
+        height: auto;
+
+        .slide {
+
+            &::before {
+                background: linear-gradient(rgba(0, 0, 0, .15) 30%, rgba(0, 0, 0, .4));
+            }
+
+            img {
+                max-width: 190%;
+            }
+        }
+    }
+}
+
+#stores {
+    .react-carousel .carousel .slide {
+        transition: 1.5s cubic-bezier(0.79, 0.04, 0.5, 0.98);
+    }
+}
+

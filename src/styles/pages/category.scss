@@ -1,0 +1,72 @@
+#category {
+    main {
+        h1 {
+            margin: 15px 0;
+            font-size:2rem;
+        }
+
+        section {
+            margin: 40px 0;
+        }
+    }
+
+    .options {
+        margin: 20px 0;
+    }
+
+    #price.pop-up {
+        margin-top: 130px;
+        width: 300px;
+
+        .row {
+            margin: 15px 0;
+        }
+
+        input {
+            margin: 7px 0;
+            padding: 12px;
+
+            &:focus {
+                border: 1px solid #555;
+            }
+        }
+
+        .form-control {
+            vertical-align: middle;
+            margin-right: 20px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.dash {
+                margin-top: 15px;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    width: 10px;
+                    height: 1px;
+                    background: #444;
+                    left: 0;
+                    transform: translate(-50%);
+                }
+            }
+        }
+
+        p.error {
+            position: absolute;
+            margin-top: -30px;
+            background: #fff;
+            padding: 2px 7px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #999999aa;
+            z-index: 11;
+        }
+
+        button {
+            display: block;
+        }
+    }
+}
