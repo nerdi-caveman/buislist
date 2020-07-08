@@ -10,6 +10,7 @@ import MyStoreOrders from "./private/my-store-orders"
 import Store from "./public/store"
 import StoreCollection from "./public/store-collection"
 import Favourite from "./private/favourite"
+import MyStoreProducts from "./private/my-store-products"
 
 const checkAuth = (val: number): boolean => {
   return val ? true : false
@@ -63,7 +64,7 @@ const Routes: React.FC = () => {
       {/* Private routes */}
       <AuthRoute path="/favourites" component={Favourite} />
       <AuthRouteRedirectTo path="/my-store/orders" component={MyStoreOrders} to={Home} />
-      <AuthRouteRedirectTo path="/my-store/products" component={PrivateHome} to={Home} />
+      <AuthRouteRedirectTo path="/my-store/products" component={MyStoreProducts} to={Home} />
       <AuthRouteRedirectTo path="/my-store/collections" component={PrivateHome} to={Home} />
       <AuthRouteRedirectTo path="/my-store" component={MyStore} to={Home} />
       <AuthRoute path="/settings" component={Home} />

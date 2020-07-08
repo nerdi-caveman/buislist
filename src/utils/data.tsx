@@ -1,16 +1,17 @@
-import Storebanner from "../assets/barts-store-signage-1884573.jpg";
-import tech from "../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg";
-import carouselimg1 from "../assets/cooked-meat-on-plate-2313686.jpg";
-import media from "../assets/headphones_camera_retro_122094_3840x2400.jpg";
-import Productbanner from "../assets/brown-top-hanging-on-rack-1488464.jpg";
-import Accessoriesbanner from "../assets/headphones_bw_headset_120277_3840x2400.jpg";
-import photography from "../assets/woman-making-clay-pot-2166456.jpg";
-import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg";
-import phone1 from "../assets/dhe-haivan-1474319-unsplash.jpg";
-import phone2 from "../assets/george-beridze-1472234-unsplash.jpg";
-import profileimg from "../assets/brooks-leibee-562087-unsplash.jpg";
+import Storebanner from "../assets/barts-store-signage-1884573.jpg"
+import tech from "../assets/silver-macbook-beside-black-sony-ps4-dualshock-4-silver-682933.jpg"
+import carouselimg1 from "../assets/cooked-meat-on-plate-2313686.jpg"
+import media from "../assets/headphones_camera_retro_122094_3840x2400.jpg"
+import Productbanner from "../assets/brown-top-hanging-on-rack-1488464.jpg"
+import Accessoriesbanner from "../assets/headphones_bw_headset_120277_3840x2400.jpg"
+import photography from "../assets/woman-making-clay-pot-2166456.jpg"
+import ab from "../assets/four-assorted-perfume-glass-bottles-965989.jpg"
+import phone1 from "../assets/dhe-haivan-1474319-unsplash.jpg"
+import phone2 from "../assets/george-beridze-1472234-unsplash.jpg"
+import profileimg from "../assets/brooks-leibee-562087-unsplash.jpg"
+import { ProductAttributes, OrderAttributes } from "../data-types"
 
-export const productsData: any = [
+export const productsData: ProductAttributes[] = [
   {
     id: 1,
     carouselImages: [{ src: media }],
@@ -377,7 +378,7 @@ export const productsData: any = [
       { name: "OS", value: "IOS 13" },
     ],
   },
-];
+]
 
 export const storesData: any = [
   {
@@ -439,5 +440,73 @@ export const storesData: any = [
     ],
     premium: true,
     location: "Ibadan, Nigeria",
+  },
+]
+export const orderData: OrderAttributes[] = [
+  {
+    id: "Aff133j3i494nfk",
+    status: "0",
+    date: Date.now(),
+    quantity: "2",
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[0],
+  },
+  {
+    id: "Aff133j3i494nfk",
+    status: "3",
+    date: Date.now(),
+    quantity: "2",
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[4],
+  },
+  {
+    id: "Aff133j3i494nfk",
+    status: "1",
+    date: Date.now(),
+    quantity: "2",
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[5],
+  },
+  {
+    id: "Aff133j3i494nfk",
+    status: "2",
+    date: Date.now(),
+    quantity: "2",
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[3],
+  },
+  {
+    id: "Aff133j3i494nfk",
+    status: "3",
+    date: Date.now(),
+    quantity: "1",
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[1],
+  },
+  {
+    id: "Aff133j3i494nfk",
+    status: "0",
+    quantity: "5",
+    date: Date.now(),
+    customer_address: "Akobo,Ibadan, Nigeria",
+    customer_phone: "0817847193",
+    customer_email: "innioluwa4.is@gmail.com",
+    customer_name: "Inioluwa Sogelola",
+    product: productsData[2],
   },
 ]

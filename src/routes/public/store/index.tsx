@@ -51,15 +51,15 @@ const Store: React.FC<IStore> = ({ match }) => {
             <Icon path={mdiApple} size={1} color="#000000" />
           </>
         }
-        navigation={storeData.collections}
+        navigation={[...[{ name: "All products" }], ...storeData.collections]}
       />
       <StoreWrapper
-      bestSellers = {bestSellers}
-      setBestSellers = {setBestSellers}
-      featured = {featured}
-      setFeatured = {setFeatured}
+        bestSellers={bestSellers}
+        setBestSellers={setBestSellers}
+        featured={featured}
+        setFeatured={setFeatured}
         storeData={storeData}
-        setStoreData = {setStoreData}
+        setStoreData={setStoreData}
         setToFavourite={(value: boolean) => {
           setStoreData({ ...storeData, favourite: value })
         }}

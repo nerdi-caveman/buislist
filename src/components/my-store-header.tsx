@@ -10,7 +10,7 @@ const MyStoreHeader: React.FC<IMyStoreHeader> = ({ position = "fixed" }) => {
   return (
     <header id="usr-header" style={{ position }}>
       <nav>
-        <Link to="" id="logo"></Link>
+        <Link to="/my-store" id="logo"></Link>
         <ul id="main-nav">
           <li>
             <NavLink to="/my-store/orders" >Orders</NavLink>
@@ -22,10 +22,7 @@ const MyStoreHeader: React.FC<IMyStoreHeader> = ({ position = "fixed" }) => {
             <NavLink to="/my-store/collections">Collections</NavLink>
           </li>
           <li>
-            <div id="usr-icon">
-              <div id="usr-img"></div>
-            </div>
-            <ul id="usr-account"></ul>
+            <NavLink to="/my-store/payments">Payment</NavLink>
           </li>
         </ul>
       </nav>

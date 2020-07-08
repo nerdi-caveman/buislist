@@ -32,6 +32,7 @@ describe("Stores Unit Tests", () => {
 
   it("should have store header", () => {
     const collections = [
+      { name: "All products" },
       { name: "New and Featured", products: productsData.slice(3, 6) },
       { name: "Mens", products: productsData.slice(4, 7) },
       { name: "Womens", products: productsData.slice(8, 10) },
