@@ -1,14 +1,32 @@
-import React from "react"
-import MyStoreWrapper from "./my-store-product-wrapper"
-import { withRouter } from "react-router-dom"
+import React, { useState, MouseEventHandler } from "react"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 import MyStoreHeader from "../../../components/my-store-header"
+import MyStoreProductsWrapper from "./my-store-product-wrapper"
 
-const MyStore: React.FC = () => {
+interface IMyStoreProducts extends RouteComponentProps {}
+
+const MyStoreProducts: React.FC<IMyStoreProducts> = ({ location }) => {
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false)
+
+  const openAddProductModal: MouseEventHandler<Element> = (e: any) => {
+    setIsAddProductModalOpen(true)
+  }
+
+  const closeAddProductModal: MouseEventHandler<Element> = (e: any) => {
+    setIsAddProductModalOpen(false)
+  }
+
+  const myStoreProductsWrapperProps = {
+    location,
+    isAddProductModalOpen,
+    openAddProductModal,
+    closeAddProductModal,
+  }
   return (
     <>
       <MyStoreHeader />
-      <MyStoreWrapper />
+      <MyStoreProductsWrapper {...myStoreProductsWrapperProps} />
     </>
   )
 }
-export default withRouter(MyStore)
+export default withRouter(MyStoreProducts)

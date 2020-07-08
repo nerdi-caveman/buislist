@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { isFunction } from "util"
 import Icon from "@mdi/react"
-import { mdiClose, mdiMapMarker } from "@mdi/js"
+import { mdiClose } from "@mdi/js"
 
 type TSearchDatalist = {
   name: string

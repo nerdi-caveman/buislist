@@ -35,11 +35,13 @@ const StoreHeader: React.FC<IStoreHeader> = ({
           {navigation.map((link: any, index: number) => (
             <li key={index}>
               <NavLink
-                isActive={() => textToSlug(link.name) === collectionName}
+                isActive={() =>
+                  textToSlug(link.name.toLowerCase()) === collectionName
+                }
                 activeClassName="active"
-                to={`/store/${textToSlug(name)}/collection/${textToSlug(
-                  link.name
-                )}`}
+                to={`/store/${textToSlug(
+                  name.toLowerCase()
+                )}/collection/${textToSlug(link.name.toLowerCase())}`}
               >
                 {link.name}
               </NavLink>
