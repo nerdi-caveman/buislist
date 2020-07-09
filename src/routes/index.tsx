@@ -5,6 +5,14 @@ import Home from "./public/home";
 import PrivateHome from "./private/Home";
 import Product from "./public/product";
 import Category from "./public/category";
+import Adminhome from "./admin/adminhome";
+import Storeslist from "./admin/storeslist";
+import Storedetails from "./admin/storedetails";
+import Userslist from "./admin/userslist";
+import Userdetails from "./admin/userdetails";
+import Reported from "./admin/reportedpage";
+import Productlist from "./admin/productlist";
+import Productdetails from "./admin/productdetails";
 
 const checkAuth = (val: number): boolean => {
   return val ? true : false;
@@ -54,6 +62,15 @@ const Routes: React.FC = () => {
       <Route path="/store" render={() => <Home />} />
       <Route path="/store/:name" render={() => <Home />} />
       <Route path="/product/:name/:id" render={() => <Product />} />
+      
+      <Route path="/admin" render={() => <Adminhome />} />
+      <Route path="/stores" render={() => <Storeslist />} />
+      <Route path="/users" render={() => <Userslist />} />
+      <Route path="/products" render={() => <Productlist />} />
+      <Route path="/reported" render={() => <Reported />} />
+      <Route path="/storeinfo/:name/:id" render={() => <Storedetails />} />
+      <Route path="/userinfo/:name/:id" render={() => <Userdetails />} />
+      <Route path="/productinfo/:name/:id" render={() => <Productdetails />} />
 
       {/* Private routes */}
       <AuthRoute path="/settings" component={Home} />
